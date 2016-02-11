@@ -7,7 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 
-@SuppressWarnings("deprecation")
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="USERS")
 public class Users {
@@ -18,8 +19,10 @@ public class Users {
 	private int id;
 	
 	@Column(name="name")
+	@NotEmpty(message="Username must not be empty.")
 	private String name;
 	
+	@NotEmpty(message="Password must not be empty.")
 	@Column(name="password")
 	private String password;
 	

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.comag10.crowdflower.Utils;
 import com.comag10.crowdflower.dao.UserDao;
 import com.comag10.crowdflower.model.Users;
+import com.comag10.crowdflower.ui.model.Signup;
 
 
 @Service("UserService")
@@ -53,4 +55,30 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		this.userDAO.removeUser(id);
 	}
+	
+	@Transactional
+	public Users loginUser(Users u) {
+		// TODO Auto-generated method stub
+		
+		String password = u.getPassword();
+		password = Utils.MD5(password);
+		
+		u.setPassword(password);
+		return this.userDAO.authnticateUser(u);
+	}
+
+	public void signupUser(Signup user) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Transactional
+	public Boolean checkUser(Signup user) {
+		// TODO Auto-generated method stub
+		return this.userDAO.isAlreadyExistingUser(user.getUsername());
+	}
+	
+	
+	
+	
 }

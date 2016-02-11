@@ -11,4 +11,6 @@ public interface UserDao {
     public List<Users> listUsers();
     public Users getUserById(int id);
     public void removeUser(int id);
+    public Users authnticateUser(Users u);
+    public Boolean isAlreadyExistingUser(String username);
 }
