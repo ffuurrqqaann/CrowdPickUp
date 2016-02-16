@@ -18,9 +18,9 @@ public class Users {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="name")
+	@Column(name="username")
 	@NotEmpty(message="Username must not be empty.")
-	private String name;
+	private String username;
 	
 	@NotEmpty(message="Password must not be empty.")
 	@Column(name="password")
@@ -29,6 +29,9 @@ public class Users {
 	@Column(name="balance")
 	private int balance;
 	
+	@Column(name="enabled")
+	private int enabled;
+	
 	public int getId() {
 		return id;
 	}
@@ -36,11 +39,11 @@ public class Users {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public String getPassword() {
@@ -55,6 +58,13 @@ public class Users {
 	}
 	public void setBalance(int balance) {
 		this.balance = balance;
+	}
+	
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 	
 }

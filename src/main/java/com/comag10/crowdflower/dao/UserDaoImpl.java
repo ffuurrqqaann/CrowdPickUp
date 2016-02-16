@@ -27,7 +27,9 @@ public class UserDaoImpl implements UserDao {
 		Session session = this.sessionFactory.getCurrentSession();
 
 		try {
+			
 			session.persist(u);
+			//session.save(u);
 		} catch( Exception e ) {
 			System.out.println(e.getMessage());
 		}
@@ -73,7 +75,7 @@ public class UserDaoImpl implements UserDao {
 	public Users authnticateUser(Users u) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Users> usersList = session.createQuery(" FROM Users WHERE name='"+u.getName()+"' AND password='"+u.getPassword()+"'").list();
+		List<Users> usersList = session.createQuery(" FROM Users WHERE name='"+u.getUsername()+"' AND password='"+u.getPassword()+"'").list();
 		
 		return usersList.get(0);
 	}
@@ -83,7 +85,7 @@ public class UserDaoImpl implements UserDao {
 	public Boolean isAlreadyExistingUser(String username) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Users> usersList = session.createQuery(" FROM Users WHERE name='"+username+"'").list();
+		List<Users> usersList = session.createQuery(" FROM Users WHERE username='"+username+"'").list();
 		
 		if( usersList.size()<=0 )
 			return false;

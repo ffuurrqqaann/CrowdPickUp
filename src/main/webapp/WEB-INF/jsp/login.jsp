@@ -19,26 +19,33 @@
 }
 </style>
 </head>
-<body>
+<body onload="document.f.j_username.focus()">
 	<h1>User Login</h1>
-
-	<form:form commandName="user">
+	
+	<c:if test="${not empty error}">
+		<div class="errorblock" >
+			Your Login was unseccessful. <br/>
+			Username and/or password is Incorrect.
+		</div>
+	</c:if>
+	
+	<form action="j_spring_security_check" name="f" method="post">
 		<table>
 			<tr>
 				<td>Username:</td>
-				<td><form:input path="name" /></td>
-				<td><form:errors path="name" title="Name must not be empty"></form:errors></td>
+				<td><input type="text" name="j_username" value="" /></td>
+				<!-- <td><form:errors path="name" title="Name must not be empty"></form:errors></td> -->
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td><form:password path="password" /></td>
-				<td><form:errors path="password" title="Password must not be empty"></form:errors></td>
+				<td><input type="password" name="j_password" /></td>
+				<!-- <td><form:errors path="password" title="Password must not be empty"></form:errors></td> -->
 			</tr>
 			<tr>
-				<td colspan="3"><input type="submit" value="Login"></td>
+				<td colspan="2"><input type="submit" name="submit" value="Login"></td>
 			</tr>
 		</table>
-	</form:form>
+	</form>
 	
 	<div>Don't have an account <a href="signupUser.html">Signup Now</a></div>
 	 

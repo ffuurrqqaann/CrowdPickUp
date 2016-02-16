@@ -1,11 +1,13 @@
 package com.comag10.crowdflower.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +41,27 @@ public class UserController {
 	public void setPasswordValidator(PasswordValidator passwordValidator) {
 		this.passwordValidator = passwordValidator;
 	}
+	
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(ModelMap model) {
+		//model.addAttribute("user", new Users());
+		System.out.println("In login method");
+	
+		return "login";
+	}
+	
+	@RequestMapping(value = "/loginFailed", method = RequestMethod.GET)
+	public String loginFailed(ModelMap model) {
+		//model.addAttribute("user", new Users());
+		System.out.println("In login failed method");
+		model.addAttribute("error", "true");
+		
+		return "login";
+	}
 
-	@RequestMapping(value = "/loginUser", method = RequestMethod.GET)
+	
+	/*@RequestMapping(value = "/loginUser", method = RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("user", new Users());
 
@@ -60,9 +81,16 @@ public class UserController {
 
 		return "login";
 	}
-
+*/
 	@RequestMapping(value = "/signupUser", method = RequestMethod.GET)
-	public String userSignup(Model model) {
+	public String userSignup(Model model, HttpSession session) {
+		
+		if(session==null) {
+			System.out.println("The session is null");
+		} else {
+			System.out.println("The session is not null");
+		}
+		
 		model.addAttribute("signup", new Signup());
 
 		return "signup";
@@ -84,16 +112,13 @@ public class UserController {
 		
 		Users user = new Users();
 		
-		user.setId(0);
-		user.setName(signup.getUsername());
+		user.setUsername(signup.getUsername());
 		user.setPassword(Utils.MD5(signup.getPassword()));
 		user.setBalance(0);
+		user.setEnabled(1);
 		
 		this.userService.addUser(user);
 		
-		
-		
 		return "signup";
 	}
-
 }
