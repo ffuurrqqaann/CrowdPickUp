@@ -40,8 +40,8 @@
 	<display-name>Archetype Created Web Application</display-name>
 	
 	<!-- session listener -->
-	<!-- <listener>
+	<listener>
 		<listener-class>com.comag10.crowdflower.listener.ApplicationHttpSessionListener</listener-class>
-	</listener> -->
+	</listener>
 	
 </web-app>
