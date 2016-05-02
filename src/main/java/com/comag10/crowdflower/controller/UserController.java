@@ -3,6 +3,7 @@ package com.comag10.crowdflower.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+
 import com.comag10.crowdflower.Utils;
 import com.comag10.crowdflower.model.Users;
 import com.comag10.crowdflower.service.UserService;
 import com.comag10.crowdflower.ui.model.Signup;
+import com.comag10.crowdflower.utilities.HibernateUtilities;
 import com.comag10.crowdflower.validator.PasswordValidator;
 
 @Controller
@@ -47,8 +50,31 @@ public class UserController {
 	public String login(ModelMap model) {
 		//model.addAttribute("user", new Users());
 		System.out.println("In login method");
+		
+		Session session = HibernateUtilities.getSessionFactory().openSession();
+		
+		if( session.isConnected() ) {
+			System.out.println("Session is connected.");
+		} else {
+			System.out.println("Session is not connected.");
+		}
+		
+		session.close();
+		
+		if( session.isConnected() ) {
+			System.out.println("Session is connected.");
+		} else {
+			System.out.println("Session is not connected.");
+		}
+		
+		
 	
 		return "login";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(ModelMap model) {
+		return "logout";
 	}
 	
 	@RequestMapping(value = "/loginFailed", method = RequestMethod.GET)

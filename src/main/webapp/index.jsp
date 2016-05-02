@@ -4,5 +4,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <body>
 <h2>Hello World! <sec:authentication property="name"/></h2>
+<a href="j_spring_security_logout">Logout>></a>
 </body>
 </html>
