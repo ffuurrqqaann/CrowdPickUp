@@ -1,9 +1,13 @@
 package com.comag10.crowdflower.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 
@@ -11,7 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="USERS")
-public class Users {
+public class User {
 
 	@Id
     @Column(name="id")
@@ -31,6 +35,9 @@ public class Users {
 	
 	@Column(name="enabled")
 	private int enabled;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fk_user_id")
+	private Set<ImageIdentificationDeliverable> imageIdentificationDeliverable;
 	
 	public int getId() {
 		return id;
@@ -67,4 +74,11 @@ public class Users {
 		this.enabled = enabled;
 	}
 	
+	public Set<ImageIdentificationDeliverable> getImageIdentificationDeliverable() {
+		return imageIdentificationDeliverable;
+	}
+	public void setImageIdentificationDeliverable(
+			Set<ImageIdentificationDeliverable> imageIdentificationDeliverable) {
+		this.imageIdentificationDeliverable = imageIdentificationDeliverable;
+	}
 }

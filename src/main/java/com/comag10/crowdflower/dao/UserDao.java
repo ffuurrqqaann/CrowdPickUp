@@ -2,15 +2,20 @@ package com.comag10.crowdflower.dao;
 
 import java.util.List;
 
-import com.comag10.crowdflower.model.Users;
+import com.comag10.crowdflower.model.Authorities;
+import com.comag10.crowdflower.model.User;
 
 public interface UserDao {
-	 
-    public void addUser(Users u);
-    public void updateUser(Users u);
-    public List<Users> listUsers();
-    public Users getUserById(int id);
+    public int addUser(User u);
+    public void updateUser(User u);
+    public List<User> listUsers();
+    public User getUserById(int id);
     public void removeUser(int id);
-    public Users authnticateUser(Users u);
+    public User authnticateUser(User u);
     public Boolean isAlreadyExistingUser(String username);
+    public int getUserCoins(User u);
+    public User getUserByUsername(String username);
+    public Boolean updateBalance(User user, int coins);
+    public Boolean insertUserAuthorities(Authorities au);
+    
 }

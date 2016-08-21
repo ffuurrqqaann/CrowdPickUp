@@ -35,7 +35,26 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.comag10.crowdflower.model.Users</value>
+				<value>com.comag10.crowdflower.model.User</value>
+				<value>com.comag10.crowdflower.model.Task</value>
+				<value>com.comag10.crowdflower.model.ImageIdentification</value>
+				<value>com.comag10.crowdflower.model.ImageIdentificationDeliverable</value>
+				<value>com.comag10.crowdflower.model.VisualAnalysis</value>
+				<value>com.comag10.crowdflower.model.VisualAnalysisDeliverable</value>
+				<value>com.comag10.crowdflower.model.SentimentAnalysis</value>
+				<value>com.comag10.crowdflower.model.SentimentAnalysisDeliverable</value>
+				<value>com.comag10.crowdflower.model.WordRelevancySentence</value>
+				<value>com.comag10.crowdflower.model.WordRelevancyWord</value>
+				<value>com.comag10.crowdflower.model.WordRelevancySentence</value>
+				<value>com.comag10.crowdflower.model.WordRelevancyDeliverable</value>
+				<value>com.comag10.crowdflower.model.PlaceDescriptionData</value>
+				<value>com.comag10.crowdflower.model.PlaceDescriptionDeliverable</value>
+				<value>com.comag10.crowdflower.model.Location</value>
+				<value>com.comag10.crowdflower.model.HousingLocation</value>
+				<value>com.comag10.crowdflower.model.StudentHousingDeliverable</value>
+				<value>com.comag10.crowdflower.model.Hobby</value>
+				<value>com.comag10.crowdflower.model.OuluHobbiesDeliverable</value>
+				<value>com.comag10.crowdflower.model.Authorities</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -46,7 +65,8 @@
 			</props>
 		</property>
 	</bean>
-
+	
+	<!-- user Data Access Object bean declaration -->
 	<bean id="userDAO" class="com.comag10.crowdflower.dao.UserDaoImpl">
 		<property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
@@ -55,7 +75,17 @@
 		class="com.comag10.crowdflower.service.UserServiceImpl">
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
-
+	
+	<!-- task Data Access Object bean declaration -->
+	<bean id="taskDAO" class="com.comag10.crowdflower.dao.TaskDaoImpl">
+		<property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="taskService"
+		class="com.comag10.crowdflower.service.TaskServiceImpl">
+		<property name="taskDAO" ref="taskDAO"></property>
+	</bean>
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="transactionManager"

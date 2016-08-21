@@ -8,46 +8,52 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comag10.crowdflower.Utils;
 import com.comag10.crowdflower.dao.UserDao;
-import com.comag10.crowdflower.model.Users;
+import com.comag10.crowdflower.model.Authorities;
+import com.comag10.crowdflower.model.User;
 import com.comag10.crowdflower.ui.model.Signup;
 
 
 @Service("UserService")
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	private UserDao userDAO;
-	
+
 	public void setUserDAO(UserDao userDAO) {
 		this.userDAO = userDAO;
 	}
-	
+
 	@Transactional
-	public void addUser(Users u) {
+	public int addUser(User u) {
 		// TODO Auto-generated method stub
-		this.userDAO.addUser(u);
+		return this.userDAO.addUser(u);
 	}
 	@Transactional
-	public void updateUser(Users u) {
+	public Boolean updateUser(User u) {
 		// TODO Auto-generated method stub
-		this.userDAO.updateUser(u);
+		try {
+			this.userDAO.updateUser(u);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
 	}
 	@Transactional
-	public List<Users> listUsers() {
+	public List<User> listUsers() {
 		// TODO Auto-generated method stub
-		
+
 		if( this.userDAO == null ) {
 			System.out.print("object is null");
 		} else {
 			System.out.print("object is not null");
 		}
-		
+
 		return this.userDAO.listUsers();
 	}
 	@Transactional
-	public Users getUserById(int id) {
+	public User getUserById(int id) {
 		// TODO Auto-generated method stub
-		
+
 		return this.userDAO.getUserById(id);
 	}
 	@Transactional
@@ -55,30 +61,70 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		this.userDAO.removeUser(id);
 	}
-	
+
 	@Transactional
-	public Users loginUser(Users u) {
+	public User loginUser(User u) {
 		// TODO Auto-generated method stub
-		
+
 		String password = u.getPassword();
 		password = Utils.MD5(password);
-		
+
 		u.setPassword(password);
 		return this.userDAO.authnticateUser(u);
 	}
 
 	public void signupUser(Signup user) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Transactional
 	public Boolean checkUser(Signup user) {
 		// TODO Auto-generated method stub
 		return this.userDAO.isAlreadyExistingUser(user.getUsername());
 	}
+
+	public int getUserCoins(User u) {
+		// TODO Auto-generated method stub
+		int coins = this.userDAO.getUserCoins(u);
+
+		return coins;
+	}
+
+	@Transactional
+	public User getUserByUsername(String username) {
+		// TODO Auto-generated method stub
+		User user = this.userDAO.getUserByUsername(username);
+
+		return user;
+	}
+
+	@Transactional
+	public Boolean updateUserBalance(User user, int coins) {
+		// TODO Auto-generated method stub
+		int currentBalance = this.userDAO.getUserCoins(user);
+		currentBalance+=coins;
+
+		try {
+			this.userDAO.updateBalance(user, currentBalance);
+
+			return true;
+		} catch(Exception e) {
+			System.out.println(e.getMessage().toString());
+			return false;
+		}
+	}
 	
-	
-	
-	
+	@Transactional
+	public Boolean addUserAuthorities(Authorities au) {
+		// TODO Auto-generated method stub
+		try {
+			this.userDAO.insertUserAuthorities(au);
+			
+			return true;
+		} catch(Exception e) {
+			System.out.println(e.getMessage().toString());
+			return false;
+		}
+	}
 }

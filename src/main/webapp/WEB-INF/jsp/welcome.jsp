@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Welcome to Crowdflow</title>
 </head>
 <body>
-	<h1>${greeting}</h1>
+	<h1>Title : ${title}</h1>	
+	<h1>Message : ${message}</h1>	
 </body>
 </html>
