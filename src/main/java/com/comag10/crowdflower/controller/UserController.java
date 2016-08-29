@@ -65,7 +65,7 @@ public class UserController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(ModelMap model) {
-		return "logout";
+		return "login";
 	}
 
 	@RequestMapping(value = "/loginFailed", method = RequestMethod.GET)
@@ -102,6 +102,7 @@ public class UserController {
 
 			User user = this.userService.getUserByUsername(username);
 			model.addAttribute("coins", user.getBalance());
+			model.addAttribute("username", user.getUsername());
 			
 		}
 		return "tasks";

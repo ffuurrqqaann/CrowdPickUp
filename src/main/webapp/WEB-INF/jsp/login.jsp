@@ -65,9 +65,15 @@
 </head>
 <body onload="document.f.j_username.focus()" class="bg">
 	<div class="container-fluid">
-		<div class="row">
-			<div class="Absolute-Center is-Responsive">
-				<h2>User Login</h2>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="margin-top: 10%;">
+			<div class="span4 Absolute-Center is-Responsive" align="center" style="margin-top: 10%;">
+				<h2>Login</h2>
 				<c:if test="${not empty error}">
 					<div class="control-group error">
 						<label class="control-label" for="inputError">Username
@@ -77,12 +83,12 @@
 				<form class="form-horizontal" action="j_spring_security_check"
 					name="f" method="post">
 					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+						<label for="inputEmail3" class="col-sm-2 control-label">Username</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="inputEmail3"
-								placeholder="Email" name="j_username" value="">
+								placeholder="Username" name="j_username" value=""/>
 						</div>
-						<form:errors path="name" title="Name must not be empty"></form:errors>
+						<form:errors path="name" title="Username must not be empty"></form:errors>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>

@@ -37,21 +37,6 @@
 	padding: 8px;
 	margin: 16px;
 }
-
-/* .Absolute-Center {
-	margin: auto;
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-}
-
-.Absolute-Center.is-Responsive {
-	min-width: 200px;
-	max-width: 400px;
-	padding: 40px;
-} */
 .bg {
 	background-color: #F6F6F6;
 }
@@ -79,32 +64,53 @@
 
 </head>
 <body class="bg">
-
+	<div class="container">
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<a href="tasks.html" class="btn btn-primary">Home</a>
+				<a href="profile.html" class="btn btn-primary">Dashboard</a>
+				<a href="shop.html" class="btn btn-primary">Prizes</a>
+				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
+			</div>
+		</div>
+	</div>
+	<br />
 	<div class="container-fluid"
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
-			<div class="text-right"
-				style="border: 0px solid #000000; margin-top: 20px;">
-				<a href="tasks.html" class="btn btn-primary">Home</a>
-				<a href="profile.html" class="btn btn-primary">Dashboard</a>
-				<!-- user logout -->
-				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
-			</div>
-
-			<div class="span4" align="center" style="margin-top: 30%;">
+			<div class="span4" align="center" style="margin-top: 10%;">
 				<div class="hero-unit" align="center">
 
 					<!-- Welcome message -->
-					<h2>Welcome to Anywhere Crowdsourcing tasks!</h2>
+					<!-- <h2>Welcome to Anywhere Crowdsourcing tasks!</h2> -->
+					<h3>The following tasks can be performed anywhere.</h3>
 
-					<!-- display tasks -->
-					<div class="btn-group-vertical">
-						<a href="sentiment-analysis.html" class="btn btn-primary">Sentiment
-							Analysis</a> <a href="visual-analysis.html" class="btn btn-primary">Visual
-							Analsis</a> <a href="word-relevancy.html" class="btn btn-primary">Word/Topic
-							Relevancy</a>
+					<div class="row" style="border: 0px solid #000000;">
+						<div class="span4" align="center" style="margin-top: 5%;">
+							<a href="sentiment-analysis.html" class="btn btn-primary">Sentiment
+								Analysis</a>
+						</div>
 					</div>
+					<div class="row" style="border: 0px solid #000000;">
+						<div class="span4" align="center" style="margin-top: 5%;">
+							<a href="visual-analysis.html" class="btn btn-primary">Visual
+								Analysis</a>
+						</div>
+					</div>
+					<div class="row" style="border: 0px solid #000000;">
+						<div class="span4" align="center" style="margin-top: 5%;">
+							<a href="word-relevancy.html" class="btn btn-primary">Word/Topic
+								Relevancy</a>
+						</div>
+					</div>
+					<br />
 				</div>
 			</div>
 		</div>

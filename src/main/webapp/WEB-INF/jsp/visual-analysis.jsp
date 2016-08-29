@@ -110,7 +110,7 @@
 					return;
 				}
 
-				window.location.replace("tasks.html");
+				window.location.replace("visual-analysis.html");
 			});
 		});
 
@@ -133,25 +133,35 @@
 					return;
 				}
 
-				window.location.replace("tasks.html");
+				window.location.replace("visual-analysis.html");
 			});
 		});
 	});
 </script>
 </head>
 <body class="bg">
+	<div class="container">
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<a href="tasks.html" class="btn btn-primary">Home</a> <a
+					href="profile.html" class="btn btn-primary">Dashboard</a> <a
+					href="shop.html" class="btn btn-primary">Prizes</a> <a
+					href="j_spring_security_logout" class="btn btn-primary">Logout</a>
+			</div>
+		</div>
+	</div>
+	<br />
 	<div class="container-fluid"
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
-			<div class="text-right"
-				style="border: 0px solid #000000; margin-top: 20px;">
-				<a href="tasks.html" class="btn btn-primary">Home</a> <a
-					href="profile.html" class="btn btn-primary">Dashboard</a>
-				<!-- user logout -->
-				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
-			</div>
-			<br /> <br />
+			<br />
 			<c:choose>
 				<c:when test="${not empty resource}">
 					<div class="form-group">
@@ -162,7 +172,7 @@
 							${task.getTask_description()}</label>
 					</div>
 					<div class="form-group">
-						<label for="email"> Task Reward : ${task.getDef_reward()}</label>
+						<label for="email"> Task Reward : ${task.getDef_reward()} Coins</label>
 					</div>
 					<form role="form" name="visualAnalysis" id="visualAnalysis"
 						action="visualanalysis-post.html" method="POST">
@@ -179,6 +189,7 @@
 								<label><input type="radio" id="answer" name="answer"
 									value="2" />2</label>
 							</div>
+							<br />
 						</div>
 						<div class="form-group">
 							<input type="hidden" value="${resource.getResource_id()}"
@@ -197,5 +208,6 @@
 			</c:choose>
 		</div>
 	</div>
+	<br />
 </body>
 </html>

@@ -80,18 +80,25 @@
 </style>
 </head>
 <body>
+	<div class="container">
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<a href="tasks.html" class="btn btn-primary">Home</a> <a
+					href="shop.html" class="btn btn-primary">Prizes</a> <a
+					href="j_spring_security_logout" class="btn btn-primary">Logout</a>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid"
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
-			<div class="text-right"
-				style="border: 0px solid #000000; margin-top: 20px;">
-				<a href="tasks.html" class="btn btn-primary">Home</a> <a
-					href="shop.html" class="btn btn-primary">Shop</a>
-				<!-- user logout -->
-				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
-			</div>
-			<br /> <br />
 			<div class="form-group">
 				<h3>
 					<label for="email"> Welcome, ${user.getUsername()}</label>

@@ -155,17 +155,27 @@
 </style>
 </head>
 <body class="bg">
+	<div class="container">
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<a href="tasks.html" class="btn btn-primary">Home</a> <a
+					href="profile.html" class="btn btn-primary">Dashboard</a> <a
+					href="shop.html" class="btn btn-primary">Prizes</a> <a
+					href="j_spring_security_logout" class="btn btn-primary">Logout</a>
+			</div>
+		</div>
+	</div>
+	<br/>
 	<div class="container-fluid"
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
-			<div class="text-right"
-				style="border: 0px solid #000000; margin-top: 20px;">
-				<a href="tasks.html" class="btn btn-primary">Home</a> <a
-					href="profile.html" class="btn btn-primary">Dashboard</a>
-				<!-- user logout -->
-				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
-			</div>
 			<br /> <br />
 			<div class="form-group">
 				<label for="email"> Task name : ${task.getTask_name()}</label>
@@ -178,9 +188,9 @@
 				<label for="email"> Task Reward : ${task.getDef_reward()}</label>
 			</div>
 			<!-- https://maps.googleapis.com/maps/api/geocode/json?latlng=65.0578898,25.4695866&key=AIzaSyAx2v-xVjKPjRWON4BQ64qAB4x18DEbcWI -->
-			<img src="${location.getImage()}" class="img-thumbnail" />
+			<img src="${location.getImage()}" class="img-thumbnail" /> <br />
 			<br/>
-			<address>${location.getAddress()}</address>
+			<address><b>${location.getAddress()}</b></address>
 
 			<form role="form" name="placeDescription" id="placeDescription"
 				action="placedescription-post.html" method="POST">
@@ -196,19 +206,23 @@
 				<div class="form-group">
 					<div class="radio">
 						<label><input type="radio" id="crowdedness"
-							name="crowdedness" value="1">Bad</label>
+							name="crowdedness" value="1">Very Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="crowdedness"
-							name="crowdedness" value="2">Good</label>
+							name="crowdedness" value="2">Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="crowdedness"
-							name="crowdedness" value="3">Very Good</label>
+							name="crowdedness" value="3">Neutral</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="crowdedness"
-							name="crowdedness" value="4">Excellent</label>
+							name="crowdedness" value="4">Good</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" id="crowdedness"
+							name="crowdedness" value="5">Very Good</label>
 					</div>
 				</div>
 				<div class="form-group">
@@ -217,19 +231,23 @@
 				<div class="form-group">
 					<div class="radio">
 						<label><input type="radio" id="weather" name="weather"
-							value="1">Bad</label>
+							value="1">Very Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="weather" name="weather"
-							value="2">Good</label>
+							value="2">Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="weather" name="weather"
-							value="3">Very Good</label>
+							value="3">Neutral</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="weather" name="weather"
-							value="4">Excellent</label>
+							value="4">Good</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" id="weather" name="weather"
+							value="5">Very Good</label>
 					</div>
 				</div>
 
@@ -239,19 +257,23 @@
 				<div class="form-group">
 					<div class="radio">
 						<label><input type="radio" id="noise" name="noise"
-							value="1">Bad</label>
+							value="1">Very Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="noise" name="noise"
-							value="2">Good</label>
+							value="2">Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="noise" name="noise"
-							value="3">Very Good</label>
+							value="3">Neutral</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="noise" name="noise"
-							value="4">Excellent</label>
+							value="4">Good</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" id="noise" name="noise"
+							value="5">Very Good</label>
 					</div>
 				</div>
 
@@ -270,19 +292,23 @@
 				<div class="form-group">
 					<div class="radio">
 						<label><input type="radio" id="traffic" name="traffic"
-							value="1">Bad</label>
+							value="1">Very Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="traffic" name="traffic"
-							value="2">Good</label>
+							value="2">Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="traffic" name="traffic"
-							value="3">Very Good</label>
+							value="3">Neutral</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="traffic" name="traffic"
-							value="4">Excellent</label>
+							value="4">Good</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" id="traffic" name="traffic"
+							value="5">Very Good</label>
 					</div>
 				</div>
 
@@ -293,19 +319,23 @@
 				<div class="form-group">
 					<div class="radio">
 						<label><input type="radio" id="services" name="services"
-							value="1">Bad</label>
+							value="1">Very Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="services" name="services"
-							value="2">Good</label>
+							value="2">Bad</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="services" name="services"
-							value="3">Very Good</label>
+							value="3">Neutral</label>
 					</div>
 					<div class="radio">
 						<label><input type="radio" id="services" name="services"
-							value="4">Excellent</label>
+							value="4">Good</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" id="services" name="services"
+							value="5">Very Good</label>
 					</div>
 				</div>
 
@@ -321,10 +351,12 @@
 						<label><input type="radio" id="easylocation"
 							name="easylocation" value="0">No</label>
 					</div>
+					<br />
 				</div>
 				<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 			</form>
 		</div>
 	</div>
+	<br />
 </body>
 </html>

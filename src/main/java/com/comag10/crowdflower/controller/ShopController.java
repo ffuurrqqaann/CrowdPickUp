@@ -62,7 +62,7 @@ public class ShopController {
 		Boolean isUserUpdated = this.userService.updateUser(user);
 		
 		if (isUserUpdated) {
-			return "{\"status\":\"200\", \"message\":\"You have successfully purchased the item.\"}";
+			return "{\"status\":\"200\", \"message\":\"You have successfully purchased the item. Please send an email to admin@comag10.com to fix an appointment and claim your prize.Thanks!!!\"}";
 		}
 		
 		return "shop";

@@ -40,21 +40,6 @@
 	padding: 8px;
 	margin: 16px;
 }
-
-/* .Absolute-Center {
-	margin: auto;
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-}
-
-.Absolute-Center.is-Responsive {
-	min-width: 200px;
-	max-width: 400px;
-	padding: 40px;
-} */
 .bg {
 	background-color: #F6F6F6;
 }
@@ -111,7 +96,7 @@
 						return;
 					}
 
-					window.location.replace("tasks.html");
+					window.location.replace("word-relevancy.html");
 				});
 			}
 
@@ -137,7 +122,7 @@
 					return;
 				}
 
-				window.location.replace("tasks.html");
+				window.location.replace("word-relevancy.html");
 			});
 
 		});
@@ -145,18 +130,28 @@
 </script>
 </head>
 <body class="bg">
+	<div class="container">
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<a href="tasks.html" class="btn btn-primary">Home</a>
+				<a href="profile.html" class="btn btn-primary">Dashboard</a>
+				<a href="shop.html" class="btn btn-primary">Prizes</a>
+				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
+			</div>
+		</div>
+	</div>
+	<br />
 	<div class="container-fluid"
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
-			<div class="text-right"
-				style="border: 0px solid #000000; margin-top: 20px;">
-				<a href="tasks.html" class="btn btn-primary">Home</a> <a
-					href="profile.html" class="btn btn-primary">Dashboard</a>
-				<!-- user logout -->
-				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
-			</div>
-			<br /> <br />
+			<br />
 			<c:choose>
 				<c:when test="${not empty resource}">
 					<div class="form-group">
@@ -168,7 +163,7 @@
 						</label>
 					</div>
 					<div class="form-group">
-						<label for="email"> Task Reward : ${task.getDef_reward()}</label>
+						<label for="email"> Task Reward : ${task.getDef_reward()} Coins</label>
 					</div>
 					<form role="form" name="wordRelevancy" id="wordRelevancy"
 						action="wordrelevancy-post.html" method="POST">
@@ -185,6 +180,7 @@
 							<input type="hidden" value="${resource.getSentence_id()}"
 								name="sentenceId" />
 						</div>
+						<br/>
 						<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 						<button type="button" class="btn btn-primary" id="btnSkip">Skip</button>
 					</form>
@@ -198,5 +194,6 @@
 			</c:choose>
 		</div>
 	</div>
+	<br/><br/>
 </body>
 </html>

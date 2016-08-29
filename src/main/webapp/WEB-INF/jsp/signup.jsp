@@ -64,9 +64,15 @@
 </head>
 <body class="bg">
 	<div class="container-fluid">
-		<div class="row">
-			<div class="Absolute-Center is-Responsive">
-				<h2>User Signup</h2>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="margin-top: 5%;">
+			<div class="span4 Absolute-Center is-Responsive" align="center" style="margin-top: 10%;">
+				<h2>Signup</h2>
 				<c:if test="${not empty error}">
 					<div class="control-group error">
 						<label class="control-label" for="inputError">Your Signup

@@ -40,21 +40,6 @@
 	padding: 8px;
 	margin: 16px;
 }
-
-/* .Absolute-Center {
-	margin: auto;
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-}
-
-.Absolute-Center.is-Responsive {
-	min-width: 200px;
-	max-width: 400px;
-	padding: 40px;
-} */
 .bg {
 	background-color: #F6F6F6;
 }
@@ -106,7 +91,7 @@
 					return;
 				}
 
-				window.location.replace("tasks.html");
+				window.location.replace("oulu-hobbies.html");
 			});
 		});
 	});
@@ -121,6 +106,7 @@
 				style="border: 0px solid #000000; margin-top: 20px;">
 				<a href="tasks.html" class="btn btn-primary">Home</a> <a
 					href="profile.html" class="btn btn-primary">Dashboard</a>
+					<a href="shop.html" class="btn btn-primary">Prizes</a>
 				<!-- user logout -->
 				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
 			</div>

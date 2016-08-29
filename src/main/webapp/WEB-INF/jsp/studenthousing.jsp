@@ -41,20 +41,6 @@
 	margin: 16px;
 }
 
-/* .Absolute-Center {
-	margin: auto;
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-}
-
-.Absolute-Center.is-Responsive {
-	min-width: 200px;
-	max-width: 400px;
-	padding: 40px;
-} */
 .bg {
 	background-color: #F6F6F6;
 }
@@ -162,7 +148,7 @@
 																}
 
 																window.location
-																		.replace("tasks.html");
+																		.replace("student-housing.html");
 															});
 										});
 
@@ -190,25 +176,35 @@
 									return;
 								}
 
-								window.location.replace("tasks.html");
+								window.location.replace("student-housing.html");
 							});
 						});
 					});
 </script>
 </head>
 <body class="bg">
+	<div class="container">
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<a href="tasks.html" class="btn btn-primary">Home</a> <a
+					href="profile.html" class="btn btn-primary">Dashboard</a> <a
+					href="shop.html" class="btn btn-primary">Prizes</a> <a
+					href="j_spring_security_logout" class="btn btn-primary">Logout</a>
+			</div>
+		</div>
+	</div>
+	<br />
 	<div class="container-fluid"
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
-			<div class="text-right"
-				style="border: 0px solid #000000; margin-top: 20px;">
-				<a href="tasks.html" class="btn btn-primary">Home</a> <a
-					href="profile.html" class="btn btn-primary">Dashboard</a>
-				<!-- user logout -->
-				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
-			</div>
-			<br /> <br />
+			<br />
 			<c:choose>
 				<c:when test="${not empty location}">
 					<div class="form-group">
@@ -219,7 +215,7 @@
 							${task.getTask_description()}</label>
 					</div>
 					<div class="form-group">
-						<label for="email">Task Reward : ${task.getDef_reward()}</label>
+						<label for="email">Task Reward : ${task.getDef_reward()} Coins</label>
 					</div>
 					<form role="form" name="studentHousing" id="studentHousing"
 						action="studenthousing-post.html" method="POST">
@@ -233,75 +229,105 @@
 							<label for="email"> Location : ${location.getName()}</label>
 						</div>
 						<div class="form-group">
-							<h3><label for="email">Cleanliness</label></h3> <label class="checkbox"><input
-								type="radio" value="1" name="cleanliness" id="cleanliness">V.Poor</label>
-							<label class="checkbox"><input type="radio" value="2"
-								name="cleanliness" id="cleanliness">Poor</label> <label
+							<h3>
+								<label for="email">Cleanliness</label>
+							</h3>
+							<label class="checkbox"><input type="radio" value="1"
+								name="cleanliness" id="cleanliness">Very Bad</label> <label
+								class="checkbox"><input type="radio" value="2"
+								name="cleanliness" id="cleanliness">Bad</label> <label
 								class="checkbox"><input type="radio" value="3"
+								name="cleanliness" id="cleanliness">Neutral</label> <label
+								class="checkbox"><input type="radio" value="4"
 								name="cleanliness" id="cleanliness">Good</label> <label
-								class="checkbox"><input type="radio" value="4"
-								name="cleanliness" id="cleanliness">V.Good</label> <label
 								class="checkbox"><input type="radio" value="5"
-								name="cleanliness" id="cleanliness">Excellent</label>
+								name="cleanliness" id="cleanliness">Very Good</label>
+								<label class="checkbox"><input type="radio" value="0"
+								name="cleanliness" id="cleanliness">Don't Know</label>
 						</div>
 						<div class="form-group">
-							<h3><label for="email">Nearby Services</label></h3> <label
-								class="checkbox"><input type="radio" value="1"
-								name="service" id="service">V.Poor</label> <label
+							<h3>
+								<label for="email">Nearby Services</label>
+							</h3>
+							<label class="checkbox"><input type="radio" value="1"
+								name="service" id="service">Very Bad</label> <label
 								class="checkbox"><input type="radio" value="2"
-								name="service" id="service">Poor</label> <label class="checkbox"><input
-								type="radio" value="3" name="service" id="service">Good</label>
+								name="service" id="service">Bad</label> <label class="checkbox"><input
+								type="radio" value="3" name="service" id="service">Neutral</label>
 							<label class="checkbox"><input type="radio" value="4"
-								name="service" id="service">V.Good</label> <label
+								name="service" id="service">Good</label> <label
 								class="checkbox"><input type="radio" value="5"
-								name="service" id="service">Excellent</label>
+								name="service" id="service">Very Good</label>
+								<label class="checkbox"><input type="radio" value="0"
+								name="service" id="service">Don't Know</label>
 						</div>
 						<div class="form-group">
-							<h3><label for="email">Location</label></h3> <label class="checkbox"><input
-								type="radio" value="1" name="location" id="location">V.Poor</label>
-							<label class="checkbox"><input type="radio" value="2"
-								name="location" id="location">Poor</label> <label
-								class="checkbox"><input type="radio" value="3"
-								name="location" id="location">Good</label> <label
-								class="checkbox"><input type="radio" value="4"
-								name="location" id="location">V.Good</label> <label
-								class="checkbox"><input type="radio" value="5"
-								name="location" id="location">Excellent</label>
-						</div>
-						<div class="form-group">
-							<h3><label for="email">Cost</label></h3> <label class="checkbox"><input
-								type="radio" value="1" name="cost" id="cost">V.Poor</label> <label
+							<h3>
+								<label for="email">Location</label>
+							</h3>
+							<label class="checkbox"><input type="radio" value="1"
+								name="location" id="location">Very Bad</label> <label
 								class="checkbox"><input type="radio" value="2"
-								name="cost" id="cost">Poor</label> <label class="checkbox"><input
-								type="radio" value="3" name="cost" id="cost">Good</label> <label
+								name="location" id="location">Bad</label> <label
+								class="checkbox"><input type="radio" value="3"
+								name="location" id="location">Neutral</label> <label
 								class="checkbox"><input type="radio" value="4"
-								name="cost" id="cost">V.Good</label> <label class="checkbox"><input
-								type="radio" value="5" name="cost" id="cost">Excellent</label>
+								name="location" id="location">Good</label> <label
+								class="checkbox"><input type="radio" value="5"
+								name="location" id="location">Very Good</label>
+								<label class="checkbox"><input type="radio" value="0"
+								name="location" id="location">Don't Know</label>
 						</div>
 						<div class="form-group">
-							<h3><label for="email">Internet</label></h3> <label class="checkbox"><input
-								type="radio" value="1" name="internet" id="internet">V.Poor</label>
-							<label class="checkbox"><input type="radio" value="2"
-								name="internet" id="internet">Poor</label> <label
+							<h3>
+								<label for="email">Cost</label>
+							</h3>
+							<label class="checkbox"><input type="radio" value="1"
+								name="cost" id="cost">Very Bad</label> <label class="checkbox"><input
+								type="radio" value="2" name="cost" id="cost">Bad</label> <label
 								class="checkbox"><input type="radio" value="3"
+								name="cost" id="cost">Neutral</label> <label class="checkbox"><input
+								type="radio" value="4" name="cost" id="cost">Good</label> <label
+								class="checkbox"><input type="radio" value="5"
+								name="cost" id="cost">Very Good</label>
+								<label class="checkbox"><input type="radio" value="0"
+								name="cost" id="cost">Don't Know</label>
+						</div>
+						<div class="form-group">
+							<h3>
+								<label for="email">Internet</label>
+							</h3>
+							<label class="checkbox"><input type="radio" value="1"
+								name="internet" id="internet">Very Bad</label> <label
+								class="checkbox"><input type="radio" value="2"
+								name="internet" id="internet">Bad</label> <label
+								class="checkbox"><input type="radio" value="3"
+								name="internet" id="internet">Neutral</label> <label
+								class="checkbox"><input type="radio" value="4"
 								name="internet" id="internet">Good</label> <label
-								class="checkbox"><input type="radio" value="4"
-								name="internet" id="internet">V.Good</label> <label
 								class="checkbox"><input type="radio" value="5"
-								name="internet" id="internet">Excellent</label>
+								name="internet" id="internet">Very Good</label>
+								<label class="checkbox"><input type="radio" value="0"
+								name="internet" id="internet">Don't Know</label>
 						</div>
 						<div class="form-group">
-							<h3><label for="email">Maintenance</label></h3> <label class="checkbox"><input
-								type="radio" value="1" name="maintenance" id="maintenance">V.Poor</label>
-							<label class="checkbox"><input type="radio" value="2"
-								name="maintenance" id="maintenance">Poor</label> <label
+							<h3>
+								<label for="email">Maintenance</label>
+							</h3>
+							<label class="checkbox"><input type="radio" value="1"
+								name="maintenance" id="maintenance">Very Bad</label> <label
+								class="checkbox"><input type="radio" value="2"
+								name="maintenance" id="maintenance">Bad</label> <label
 								class="checkbox"><input type="radio" value="3"
-								name="maintenance" id="maintenance">Good</label> <label
+								name="maintenance" id="maintenance">Neutral</label> <label
 								class="checkbox"><input type="radio" value="4"
-								name="maintenance" id="maintenance">V.Good</label> <label
+								name="maintenance" id="maintenance">Good</label> <label
 								class="checkbox"><input type="radio" value="5"
-								name="maintenance" id="maintenance">Excellent</label>
+								name="maintenance" id="maintenance">Very Good</label>
+								<label class="checkbox"><input type="radio" value="0"
+								name="maintenance" id="maintenance">Don't Know</label>
 						</div>
+						<br/>
 						<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 						<button type="button" class="btn btn-primary" id="btnSkip">Skip</button>
 					</form>
@@ -315,5 +341,6 @@
 			</c:choose>
 		</div>
 	</div>
+	<br/>
 </body>
 </html>

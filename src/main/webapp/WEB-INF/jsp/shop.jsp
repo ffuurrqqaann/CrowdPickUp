@@ -12,6 +12,9 @@
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 	crossorigin="anonymous" />
 
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.0/themes/redmond/jquery-ui.css" />
+
 <!-- Optional theme -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
@@ -21,6 +24,9 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 
+<script type="text/javascript"
+	src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
@@ -28,7 +34,42 @@
 	crossorigin="anonymous"></script>
 
 <script>
-	function purchaseItem(item) {
+	var item = null;
+
+	jQuery(function() {
+
+		jQuery("#dialog").dialog({
+			autoOpen : false,
+			modal : true,
+			buttons : {
+				"Confirm" : function() {
+
+					purchaseItem(item, this);
+
+					//alert("You have confirmed!");
+				},
+				"Cancel" : function() {
+					jQuery(this).dialog("close");
+				}
+			}
+		});
+		
+		jQuery("#helpDialoge").dialog({
+			autoOpen : false,
+		});
+
+		jQuery("#help").on("click", function(e) {
+			e.preventDefault();
+			jQuery("#helpDialoge").dialog("open");
+		});
+	});
+
+	function openDialogue(shopItem) {
+		jQuery("#dialog").dialog("open");
+		this.item = shopItem;
+	}
+
+	function purchaseItem(item, dialogueObj) {
 
 		var cost = "";
 
@@ -49,6 +90,7 @@
 		}).done(function(json) {
 			var response = jQuery.parseJSON(json);
 			alert(response.message);
+			jQuery(dialogueObj).dialog("close");
 		});
 	}
 </script>
@@ -66,20 +108,6 @@
 	margin: 16px;
 }
 
-/* .Absolute-Center {
-	margin: auto;
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-}
-
-.Absolute-Center.is-Responsive {
-	min-width: 200px;
-	max-width: 400px;
-	padding: 40px;
-} */
 .bg {
 	background-color: #F6F6F6;
 }
@@ -106,21 +134,38 @@
 </style>
 </head>
 <body class="bg">
+	<div id="dialog" title="Confirmation Required">Are you sure about this?</div>
+	<div id="helpDialoge" title="CrowdFlow Help">
+		
+		<p>CrowdFlow is a Research project developed under the supervision of Center for Ubiquitous Computing, University Of Oulu.</p>
+		<p>The purpose of this project is to asses the feasibility and performance of Situated, Located and Anywhere Crowdsourcing as well as a basic understanding of its worker's behaviors.</p>
+		<p>In order to claim your purchased items send an email to admin@comag10.com and fix an appointment.</p>
+		
+	</div>
+	<div class="container">
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<img src="images/logo.png" class="img-responsive" alt="logo"
+					width="121" height="60" />
+			</div>
+		</div>
+		<div class="row" style="border: 0px solid #000000;">
+			<div class="span4" align="center" style="margin-top: 5%;">
+				<button type="button" class="btn btn-info" id="help">Help</button>
+				<a href="tasks.html" class="btn btn-primary">Home</a> <a
+					href="profile.html" class="btn btn-primary">Dashboard</a> <a
+					href="j_spring_security_logout" class="btn btn-primary">Logout</a>
+			</div>
+		</div>
+	</div>
+	<br />
 	<div class="container-fluid"
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
-			<div class="text-right"
-				style="border: 0px solid #000000; margin-top: 20px;">
-				<a href="tasks.html" class="btn btn-primary">Home</a> <a
-					href="profile.html" class="btn btn-primary">Dashboard</a>
-				<!-- user logout -->
-				<a href="j_spring_security_logout" class="btn btn-primary">Logout</a>
-			</div>
-			<br /> <br />
 			<div class="row">
 				<div class="col-md-4">
-					<a href="#" class="thumbnail" onclick="purchaseItem('coffee')">
+					<a href="#" class="thumbnail" onclick="openDialogue('coffee')">
 						<p>${freeCoffeeDescription}</p> <img src="${coffeeImage}"
 						style="width: 150px; height: 150px" class="img-thumbnail">
 						<p>${freeCoffeeCost}Coins</p> <input type="hidden" id="coffee"
@@ -128,7 +173,7 @@
 					</a>
 				</div>
 				<div class="col-md-4">
-					<a href="#" class="thumbnail" onclick="purchaseItem('lunch')">
+					<a href="#" class="thumbnail" onclick="openDialogue('lunch')">
 						<p>${freeLunchDescription}</p> <img src="${lunchImage}"
 						style="width: 150px; height: 150px" class="img-thumbnail">
 						<p>${freelunchCost}Coins</p> <input type="hidden" id="lunch"
@@ -136,7 +181,7 @@
 					</a>
 				</div>
 				<div class="col-md-4">
-					<a href="#" class="thumbnail" onclick="purchaseItem('burger')">
+					<a href="#" class="thumbnail" onclick="openDialogue('burger')">
 						<p>${burgerKingDescription}</p> <img src="${burgerKingImage}"
 						style="width: 150px; height: 150px" class="img-thumbnail">
 						<p>${freeBurgerCost}Coins</p> <input type="hidden" id="burger"
