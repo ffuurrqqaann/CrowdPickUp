@@ -478,6 +478,7 @@ public class TaskController {
 			@RequestParam("answer") String answer,
 			@RequestParam("sentence") String sentenceId,
 			@RequestParam("isSkipped") String isSkipped,
+			@RequestParam("isCorrect") String isCorrect,
 			Principal principal,
 			HttpServletResponse response) {
 
@@ -492,7 +493,7 @@ public class TaskController {
 		String wordRelevanceEndTime = Utils.getCurrentTime();
 
 		long timeTaken = Utils.getTimeDifference(wordRelevancyStartTime, wordRelevanceEndTime);
-
+		
 		WordRelevancyDeliverable deliverable = new WordRelevancyDeliverable();
 
 		if(answer.equals("")) {
@@ -507,6 +508,8 @@ public class TaskController {
 		deliverable.setFk_user_id(user);
 		deliverable.setSentence(sentence);
 		deliverable.setSkipped(Integer.parseInt(isSkipped));
+		if(!isCorrect.equals(""))
+			deliverable.setIsCorrect(Integer.parseInt(isCorrect));
 		deliverable.setTime_taken(timeTaken);
 		deliverable.setCreated(Utils.getCurrentTime());
 
@@ -576,6 +579,7 @@ public class TaskController {
 			@RequestParam("suggestedLocation") String suggestedLocation,
 			@RequestParam("resourceId") String resourceId,
 			@RequestParam("isSkipped") String isSkipped,
+			@RequestParam("isCorrect") String isCorrect,
 			Principal principal,
 			HttpServletResponse response) {
 
@@ -601,6 +605,8 @@ public class TaskController {
 		deliverable.setResource_id(imageResource);
 		deliverable.setAnswer(suggestedLocation);
 		deliverable.setSkipped(Integer.parseInt(isSkipped));
+		if(!isCorrect.equals(""))
+			deliverable.setIsCorrect(Integer.parseInt(isCorrect));
 		deliverable.setTime_taken(timeTaken);
 		deliverable.setCreated(Utils.getCurrentTime());
 
@@ -624,6 +630,7 @@ public class TaskController {
 			@RequestParam("resourceId") String resourceId, 
 			@RequestParam("sentiment") String sentiment,
 			@RequestParam("isSkipped") String isSkipped,
+			@RequestParam("isCorrect") String isCorrect,
 			HttpServletResponse response) {
 
 		//get current user id from user info.
@@ -648,6 +655,9 @@ public class TaskController {
 		deliverable.setResource_id(sentimentResource);
 		deliverable.setAnswer(Integer.parseInt(sentiment));
 		deliverable.setSkipped(Integer.parseInt(isSkipped));
+		
+		if(!isCorrect.equals(""))
+			deliverable.setIsCorrect(Integer.parseInt(isCorrect));
 		deliverable.setTime_taken(timeTaken);
 		deliverable.setCreated(Utils.getCurrentTime());
 

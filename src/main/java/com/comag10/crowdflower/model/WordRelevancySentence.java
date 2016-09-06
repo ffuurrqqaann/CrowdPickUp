@@ -2,15 +2,12 @@ package com.comag10.crowdflower.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 
@@ -32,9 +29,8 @@ public class WordRelevancySentence {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sentence")
 	private Set<WordRelevancyDeliverable> sentenceDeliverable;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private WordRelevancyWord groundTruth;
+	@Column(name="ground_truth")
+	private int groundTruth;
 	
 	public int getSentence_id() {
 		return sentence_id;
@@ -57,10 +53,16 @@ public class WordRelevancySentence {
 		this.words = words;
 	}
 	
-	public WordRelevancyWord getGroundTruth() {
+	/**
+	 * @return the groundTruth
+	 */
+	public int getGroundTruth() {
 		return groundTruth;
 	}
-	public void setGroundTruth(WordRelevancyWord groundTruth) {
+	/**
+	 * @param groundTruth the groundTruth to set
+	 */
+	public void setGroundTruth(int groundTruth) {
 		this.groundTruth = groundTruth;
 	}
 	

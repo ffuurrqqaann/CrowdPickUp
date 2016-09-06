@@ -83,7 +83,8 @@
 <script>
 	jQuery(document).ready(function() {
 
-		var resourceId = $("#resourceId").val();
+		var resourceId 	= $("#resourceId").val();
+		var grountTruth	=	$('input[name="groundTruth"]').val();
 
 		$("#btnSubmit").click(function() {
 			var answer = $("#answer").val();
@@ -98,8 +99,9 @@
 				url : "visualanalysis-post.html",
 				data : {
 					suggestedLocation : answer,
-					resourceId : resourceId,
-					isSkipped : "0"
+					resourceId 	: resourceId,
+					isSkipped 	: "0",
+					isCorrect 	: answer==grountTruth?'1':'0'
 				}
 			}).done(function(json) {
 
@@ -120,9 +122,10 @@
 				method : "POST",
 				url : "visualanalysis-post.html",
 				data : {
-					suggestedLocation : "",
-					resourceId : resourceId,
-					isSkipped : "1"
+					suggestedLocation 	: "",
+					resourceId			: resourceId,
+					isSkipped 			: "1",
+					isCorrect 			: ""
 				}
 			}).done(function(json) {
 
@@ -172,7 +175,8 @@
 							${task.getTask_description()}</label>
 					</div>
 					<div class="form-group">
-						<label for="email"> Task Reward : ${task.getDef_reward()} Coins</label>
+						<label for="email"> Task Reward : ${task.getDef_reward()}
+							Coins</label>
 					</div>
 					<form role="form" name="visualAnalysis" id="visualAnalysis"
 						action="visualanalysis-post.html" method="POST">
@@ -193,7 +197,9 @@
 						</div>
 						<div class="form-group">
 							<input type="hidden" value="${resource.getResource_id()}"
-								name="resourceId" id="resourceId" />
+								name="resourceId" id="resourceId" /> <input type="hidden"
+								value="${resource.getGround_truth()}" name="groundTruth"
+								id="groundTruth" />
 						</div>
 						<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 						<button type="button" class="btn btn-primary" id="btnSkip">Skip</button>

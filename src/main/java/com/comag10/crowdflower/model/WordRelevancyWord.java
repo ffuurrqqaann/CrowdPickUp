@@ -32,10 +32,6 @@ public class WordRelevancyWord {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "word")
 	private Set<WordRelevancyDeliverable> wordDeliverable;
 	
-	/*@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "word_id", nullable = false)
-	private WordRelevancySentence sentenceGroundTruth;*/
-	
 	public int getWord_id() {
 		return word_id;
 	}
@@ -63,12 +59,5 @@ public class WordRelevancyWord {
 	public void setWordDeliverable(Set<WordRelevancyDeliverable> wordDeliverable) {
 		this.wordDeliverable = wordDeliverable;
 	}
-	
-	/*public WordRelevancySentence getSentenceGroundTruth() {
-		return sentenceGroundTruth;
-	}
-	public void setSentenceGroundTruth(WordRelevancySentence sentenceGroundTruth) {
-		this.sentenceGroundTruth = sentenceGroundTruth;
-	}*/
 	
 }

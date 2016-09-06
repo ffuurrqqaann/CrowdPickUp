@@ -36,6 +36,9 @@ public class SentimentAnalysisDeliverable {
 	@Column(name="skipped")
 	private int skipped;
 	
+	@Column(name="is_correct")
+	private int isCorrect;
+	
 	@Column(name="created")
 	private String created ;
 	
@@ -92,5 +95,18 @@ public class SentimentAnalysisDeliverable {
 	 */
 	public void setSkipped(int skipped) {
 		this.skipped = skipped;
+	}
+	
+	/**
+	 * @return the isCorrect
+	 */
+	public int getIsCorrect() {
+		return isCorrect;
+	}
+	/**
+	 * @param isCorrect the isCorrect to set
+	 */
+	public void setIsCorrect(int isCorrect) {
+		this.isCorrect = isCorrect;
 	}
 }

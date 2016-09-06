@@ -68,12 +68,16 @@
 <script>
 	jQuery(document).ready(function() {
 
-		var sentence = $('input[name="sentenceId"]').val();
+		var sentence 	= $('input[name="sentenceId"]').val();
 
 		$("#btnSubmit").click(function() {
 			var wordId = $('input[name="word"]:checked').val();
-			//alert(answer); return;
-
+			var groundTruth = $('input[name="groundTruth"]').val();
+			
+			
+			alert("selected word is "+wordId);
+			alert("ground truth is "+groundTruth);
+			
 			if (jQuery.type(wordId) === "undefined") {
 				alert("Please select a word.");
 				return;
@@ -85,7 +89,8 @@
 					data : {
 						sentence : sentence,
 						answer : wordId,
-						isSkipped : "0"
+						isSkipped : "0",
+						isCorrect : wordId==groundTruth?'1':'0'
 					}
 				}).done(function(json) {
 
@@ -111,7 +116,8 @@
 				data : {
 					sentence : sentence,
 					answer : "",
-					isSkipped : "1"
+					isSkipped : "1",
+					isCorrect : ""
 				}
 			}).done(function(json) {
 
@@ -179,6 +185,8 @@
 						<div class="form-group">
 							<input type="hidden" value="${resource.getSentence_id()}"
 								name="sentenceId" />
+							<input type="hidden" value="${resource.getGroundTruth()}" id="groundTruth"
+								name="groundTruth" />
 						</div>
 						<br/>
 						<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>

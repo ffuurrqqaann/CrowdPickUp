@@ -46,7 +46,7 @@ public class Utils {
 
 			//in milliseconds
 			long diff = d2.getTime() - d1.getTime();
-			diffSeconds = diff / 1000 % 60;
+			diffSeconds = diff / 1000;
 
 		} catch (Exception e) {
 			e.printStackTrace();

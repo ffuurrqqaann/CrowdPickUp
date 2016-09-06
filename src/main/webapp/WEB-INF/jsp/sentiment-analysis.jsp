@@ -73,7 +73,8 @@
 
 		$("#btnSubmit").click(function() {
 
-			var sentiment = $('input[name="sentiment"]:checked').val();
+			var sentiment 	=	$('input[name="sentiment"]:checked').val();
+			var grountTruth	=	$('input[name="groundTruth"]').val();
 
 			if (jQuery.type(sentiment) === "undefined") {
 				alert("Please select a sentiment.");
@@ -84,9 +85,10 @@
 				method : "POST",
 				url : "sentimentanalysis-post.html",
 				data : {
-					sentiment : sentiment,
-					resourceId : resourceId,
-					isSkipped : "0"
+					sentiment 	: sentiment,
+					resourceId 	: resourceId,
+					isSkipped 	: "0",
+					isCorrect 	: sentiment==grountTruth?'1':'0'
 				}
 			}).done(function(json) {
 
@@ -109,7 +111,8 @@
 				data : {
 					sentiment : "0",
 					resourceId : resourceId,
-					isSkipped : "1"
+					isSkipped : "1",
+					isCorrect 	: ""
 				}
 			}).done(function(json) {
 
@@ -149,7 +152,7 @@
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
-			<br/>
+			<br />
 			<c:choose>
 				<c:when test="${not empty resource}">
 					<div class="form-group">
@@ -160,7 +163,8 @@
 							${task.getTask_description()}</label>
 					</div>
 					<div class="form-group">
-						<label for="email"> Task Reward : ${task.getDef_reward()} Coins</label>
+						<label for="email"> Task Reward : ${task.getDef_reward()}
+							Coins</label>
 					</div>
 					<form role="form" name="sentimentAnalysis" id="sentimentAnalysis"
 						action="sentimentanalysis-post.html" method="POST">
@@ -183,9 +187,11 @@
 						</div>
 						<div class="form-group">
 							<input type="hidden" value="${resource.getResource_id()}"
-								name="resourceId" id="resourceId" />
+								name="resourceId" id="resourceId" /> <input type="hidden"
+								value="${resource.getGround_truth()}" name="groundTruth"
+								id="groundTruth" />
 						</div>
-						<br/>
+						<br />
 						<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 						<button type="button" class="btn btn-primary" id="btnSkip">Skip</button>
 					</form>
@@ -199,6 +205,6 @@
 			</c:choose>
 		</div>
 	</div>
-	<br/>
+	<br />
 </body>
 </html>

@@ -89,7 +89,7 @@
 	<div id="helpDialoge" title="CrowdFlow Help">
 		<p>CrowdFlow is a Research project developed under the supervision of Center for Ubiquitous Computing, University Of Oulu.</p>
 		<p>The purpose of this project is to asses the feasibility and performance of Situated, Located and Anywhere Crowdsourcing as well as a basic understanding of its worker's behaviors.</p>
-		<p>In order to claim your purchased items send an email to admin@comag10.com and fix an appointment.</p>
+		<p>In order to claim your prizes send an email to admin@comag10.com and schedule an appointment.</p>
 	</div>
 	<div class="container">
 		<div class="row" style="border: 0px solid #000000;">

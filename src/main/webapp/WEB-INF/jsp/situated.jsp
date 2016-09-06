@@ -88,7 +88,7 @@
 
 					<!-- Welcome message -->
 					<!-- <h2>Welcome to Situated Crowdsourcing tasks </h2> -->
-					<h3> The following tasks require knowledge related to Finland </h3>
+					<h3> The following tasks require knowledge related to Finland or Oulu </h3>
 					
 					<!-- different type of tasks. -->
 
