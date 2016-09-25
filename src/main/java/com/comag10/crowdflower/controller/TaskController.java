@@ -190,8 +190,12 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "/place-description", method = RequestMethod.GET)
-	public String placeDescription(ModelMap model) {
-
+	public String placeDescription(ModelMap model, Principal principal) {
+		
+		//get current user id from user info.
+		String username = principal.getName();
+		User user = this.userService.getUserByUsername(username);
+		
 		placeDescriptionStartTime = Utils.getCurrentTime();
 
 		System.out.println("place description start date " + placeDescriptionStartTime);
@@ -200,8 +204,12 @@ public class TaskController {
 		model.addAttribute("task", task);
 
 		//get the location.
-		Location location = this.taskService.getRandomLocation();
-		model.addAttribute("location", location);
+		Location location = this.taskService.getRandomLocation(user);
+		if(location==null) {
+			model.addAttribute("location", "");
+		} else {
+			model.addAttribute("location", location);
+		}
 
 		return "place-description";
 	}

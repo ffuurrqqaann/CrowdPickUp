@@ -38,6 +38,9 @@ public class Location {
 	@Column(name="longitude")
 	private double longitude;
 	
+	@Column(name="postal_code")
+	private String postal_code;
+	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "locationDeliverable")
 	private Set<PlaceDescriptionDeliverable> placeDescriptionDeliverable;
 	
@@ -96,6 +99,18 @@ public class Location {
 	public void setPlaceDescriptionDeliverable(
 			Set<PlaceDescriptionDeliverable> placeDescriptionDeliverable) {
 		this.placeDescriptionDeliverable = placeDescriptionDeliverable;
+	}
+	/**
+	 * @return the postal_code
+	 */
+	public String getPostal_code() {
+		return postal_code;
+	}
+	/**
+	 * @param postal_code the postal_code to set
+	 */
+	public void setPostal_code(String postal_code) {
+		this.postal_code = postal_code;
 	}
 	
 }

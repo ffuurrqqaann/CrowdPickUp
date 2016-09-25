@@ -18,6 +18,9 @@
 	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
 	crossorigin="anonymous">
 
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.0/themes/redmond/jquery-ui.css" />
+
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 
@@ -27,39 +30,92 @@
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
 
+<script type="text/javascript"
+	src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx2v-xVjKPjRWON4BQ64qAB4x18DEbcWI"
+	type="text/javascript"></script>
+
 <script>
 	jQuery(document).ready(function() {
-
+		//form submit.
 		$("#btnSubmit").click(function() {
-
-			var localFood = $("#localfood").val();
-			if (localFood == "") {
-				alert("Local food field must not be empty.");
-				return;
-			}
-
-			submitTask(localFood);
+			getCurrentLocation();
 		});
+
+		jQuery("#btnMap").on("click", function(e) {
+			//alert("map button clicked.");
+			e.preventDefault();
+			//jQuery("#mapDialoge").dialog("open");
+
+			initMap(this);
+			jQuery("#mapDialoge").dialog("open");
+		});
+
+		jQuery("#mapDialoge").dialog({
+			autoOpen : false,
+			height : 400,
+			width : 300
+		});
+
 	});
 
-	function initGeolocation() {
+	//get current location.
+	function getCurrentLocation() {
 		if (navigator.geolocation) {
-			// Call getCurrentPosition with success and failure callbacks
-			navigator.geolocation.getCurrentPosition(success, fail);
+			navigator.geolocation.getCurrentPosition(showPosition);
 		} else {
-			alert("Sorry, your browser does not support geolocation services.");
+			x.innerHTML = "Geolocation is not supported by this browser.";
 		}
 	}
+	
+	function showPosition(position) {
+		var gMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude;
+		//var gMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=60.192059,24.945831";//+position.coords.latitude+","+position.coords.longitude;
+		//60.192059,24.945831
+		var locationPostalCode 		= $("#postcode").val();
+		var calculatedPostalCode 	= "";
+		
+		$.ajax({
+			method : "GET",
+			url : gMapUrl
+		}).done(function(json) {
+			var addressComponents = json.results[0].address_components;
+			
+			$.each(addressComponents, function(k, v) {
+		        var types = addressComponents[k].types;
+				$.each(types, function(k1, v1) {
+					if(types[k1]=="postal_code") {
+						calculatedPostalCode = addressComponents[k].long_name;
+					}
+			    });
+		    });
+			if(locationPostalCode==calculatedPostalCode) {
+				var localFood = $("#localfood").val();
+				if (localFood == "") {
+					alert("Local food field must not be empty.");
+					return;
+				}
 
-	function success(position) {
-		alert("longitude is = " + position.coords.longitude);
-		alert("latitude  is = " + position.coords.latitude);
+				submitTask(localFood);
+			} else {
+				alert("You are not at a correct location. Please be there and submit again. Thanks!!");
+			}
+		});
 	}
 
-	function fail() {
-		alert("Sorry, Could not obtain location.");
+	function initMap(location) {
+		var mapDiv = document.getElementById('map');
+		var options = {
+			zoom : 10,
+			mapTypeId : google.maps.MapTypeId.ROADMAP,
+			center : new google.maps.LatLng($("#latitude").val(), $("#longitude").val())
+		};
+
+		var map = new google.maps.Map(mapDiv, options);
 	}
 
+	//form submit function.
 	function submitTask(localFood) {
 		var crowdedness = $('input[name="crowdedness"]:checked').val();
 		var weather = $('input[name="weather"]:checked').val();
@@ -109,9 +165,11 @@
 			if (response.status != "200") {
 				alert(response.message);
 				return;
+			} else {
+				alert("Your Task has been submitted successfully.");
 			}
 
-			window.location.replace("tasks.html");
+			window.location.replace("place-description.html");
 		});
 	}
 </script>
@@ -155,6 +213,10 @@
 </style>
 </head>
 <body class="bg">
+	<div id="mapDialoge" title="Location Map">
+		<div id="map"
+			style="border: 1px solid black; position: absolute; width: 300px; height: 400px"></div>
+	</div>
 	<div class="container">
 		<div class="row" style="border: 0px solid #000000;">
 			<div class="span4" align="center" style="margin-top: 5%;">
@@ -171,12 +233,14 @@
 			</div>
 		</div>
 	</div>
-	<br/>
+	<br />
 	<div class="container-fluid"
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
 			<br /> <br />
+			<c:choose>
+				<c:when test="${not empty location}">
 			<div class="form-group">
 				<label for="email"> Task name : ${task.getTask_name()}</label>
 			</div>
@@ -188,9 +252,18 @@
 				<label for="email"> Task Reward : ${task.getDef_reward()}</label>
 			</div>
 			<!-- https://maps.googleapis.com/maps/api/geocode/json?latlng=65.0578898,25.4695866&key=AIzaSyAx2v-xVjKPjRWON4BQ64qAB4x18DEbcWI -->
-			<img src="${location.getImage()}" class="img-thumbnail" /> <br />
-			<br/>
-			<address><b>${location.getAddress()}</b></address>
+			<img src="${location.getImage()}" class="img-thumbnail" /> <br /> <br />
+			<address>
+				<b>${location.getAddress()}</b>
+			</address>
+			<div class="form-group">
+				<button type="button" class="btn btn-primary"
+					lat="${location.getLatitude()}" lng="${location.getLongitude()}"
+					id="btnMap">Click to Open Map</button>
+			</div>
+			<!-- <div class="form-group">
+				<div id="map"></div>
+			</div> -->
 
 			<form role="form" name="placeDescription" id="placeDescription"
 				action="placedescription-post.html" method="POST">
@@ -199,7 +272,18 @@
 					<input type="hidden" value="${location.getId()}" name="locationId"
 						id="locationId" />
 				</div>
-
+				<div class="form-group">
+					<input type="hidden" value="${location.getLatitude()}"
+						name="latitude" id="latitude" />
+				</div>
+				<div class="form-group">
+					<input type="hidden" value="${location.getLongitude()}"
+						name="longitude" id="longitude" />
+				</div>
+				<div class="form-group">
+					<input type="hidden" value="${location.getPostal_code()}"
+						name="postcode" id="postcode" />
+				</div>
 				<div class="form-group">
 					<label for="email">Rate the Crowdedness of the place.</label>
 				</div>
@@ -355,8 +439,16 @@
 				</div>
 				<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 			</form>
+			</c:when>
+			<c:otherwise>
+					<div class="form-group">
+						<label for="email">You have done all Word Relevance tasks.
+							Please proceed to other tasks.</label>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
-	<br />
+	<br/>
 </body>
 </html>

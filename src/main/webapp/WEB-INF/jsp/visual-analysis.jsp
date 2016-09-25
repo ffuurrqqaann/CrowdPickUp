@@ -84,11 +84,11 @@
 	jQuery(document).ready(function() {
 
 		var resourceId 	= $("#resourceId").val();
-		var grountTruth	=	$('input[name="groundTruth"]').val();
+		var groundTruth	=	$('input[name="groundTruth"]').val();
 
 		$("#btnSubmit").click(function() {
-			var answer = $("#answer").val();
-
+			var answer = $("#answer:checked").val();
+			
 			if (jQuery.type(answer) === "undefined") {
 				alert("Please select an answer.");
 				return;
@@ -101,7 +101,7 @@
 					suggestedLocation : answer,
 					resourceId 	: resourceId,
 					isSkipped 	: "0",
-					isCorrect 	: answer==grountTruth?'1':'0'
+					isCorrect 	: answer==groundTruth?'1':'0'
 				}
 			}).done(function(json) {
 
@@ -110,6 +110,8 @@
 				if (response.status != "200") {
 					alert(response.message);
 					return;
+				}  else {
+					alert("Your Task has been submitted successfully.");
 				}
 
 				window.location.replace("visual-analysis.html");
@@ -186,12 +188,10 @@
 						</div>
 						<div class="form-group">
 							<div class="radio">
-								<label><input type="radio" id="answer" name="answer"
-									value="1" />1</label>
+								<label><input type="radio" id="answer" name="answer" value="1" />1</label>
 							</div>
 							<div class="radio">
-								<label><input type="radio" id="answer" name="answer"
-									value="2" />2</label>
+								<label><input type="radio" id="answer" name="answer" value="2" />2</label>
 							</div>
 							<br />
 						</div>

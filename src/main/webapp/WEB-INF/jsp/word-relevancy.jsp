@@ -74,10 +74,6 @@
 			var wordId = $('input[name="word"]:checked').val();
 			var groundTruth = $('input[name="groundTruth"]').val();
 			
-			
-			alert("selected word is "+wordId);
-			alert("ground truth is "+groundTruth);
-			
 			if (jQuery.type(wordId) === "undefined") {
 				alert("Please select a word.");
 				return;
@@ -99,6 +95,8 @@
 					if (response.status != "200") {
 						alert(response.message);
 						return;
+					}  else {
+						alert("Your Task has been submitted successfully.");
 					}
 
 					window.location.replace("word-relevancy.html");

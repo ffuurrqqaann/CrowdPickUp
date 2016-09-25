@@ -43,7 +43,7 @@ public interface TaskDao {
 	public WordRelevancySentence fetchSentenceBySentenceId(int id);
 	public List<PlaceDescriptionQuestion> fetchAllQuestions();
 	public Boolean submitPlaceDescriptionDeliverable(PlaceDescriptionDeliverable deliverable);
-	public Location fetchRandomLocation();
+	public Location fetchRandomLocation(int id);
 	public Location fetchLocationById(int id);
 	public Boolean submitOuluHobbiesDeliverable(OuluHobbiesDeliverable deliverable);
 	public Boolean checkUserDeliverable(User user, String locationId);
@@ -70,5 +70,5 @@ public interface TaskDao {
 	public List<ImageIdentificationDeliverable> fetchAllImageIdentificationDeliverables(int userId);
 	public List<OuluHobbiesDeliverable> fetchAllOuluHobbiesDeliverables(int userId);
 	public List<StudentHousingDeliverable> fetchAllStudentHousingDeliverables(int userId);
-	
+	public List<PlaceDescriptionDeliverable> fetchAllPlaceDescriptionDeliverables(int userId);
 }

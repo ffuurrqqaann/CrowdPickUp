@@ -163,9 +163,9 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Transactional
-	public Location getRandomLocation() {
+	public Location getRandomLocation(User user) {
 		// TODO Auto-generated method stub
-		return this.taskDAO.fetchRandomLocation();
+		return this.taskDAO.fetchRandomLocation(user.getId());
 	}
 
 	@Transactional
@@ -284,6 +284,12 @@ public class TaskServiceImpl implements TaskService {
 	public List<ImageIdentificationDeliverable> getAllImageIdentificationDeliverables(int userId) {
 		// TODO Auto-generated method stub
 		return this.taskDAO.fetchAllImageIdentificationDeliverables(userId);
+	}
+	
+	@Transactional
+	public List<PlaceDescriptionDeliverable> getAllPlaceDescriptionDeliverables(int userId) {
+		// TODO Auto-generated method stub
+		return this.taskDAO.fetchAllPlaceDescriptionDeliverables(userId);
 	}
 	
 }

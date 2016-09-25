@@ -145,6 +145,8 @@
 																if (response.status != "200") {
 																	alert(response.message);
 																	return;
+																}  else {
+																	alert("Your Task has been submitted successfully.");
 																}
 
 																window.location

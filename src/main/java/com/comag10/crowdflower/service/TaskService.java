@@ -43,7 +43,7 @@ public interface TaskService {
 	public WordRelevancySentence getSentenceBySentenceId(int id);
 	public List<PlaceDescriptionQuestion> getAllQuestions();
 	public Boolean addNewPlaceDescriptionDeliverable(PlaceDescriptionDeliverable deliverable);
-	public Location getRandomLocation();
+	public Location getRandomLocation(User user);
 	public Location getLocationById(int id);
 	public Boolean addNewOuluHobbiesDeliverable(OuluHobbiesDeliverable deliverable);
 	public Boolean checkUserDeliverable(User user, String locationId);
@@ -61,5 +61,5 @@ public interface TaskService {
 	public Boolean addNewHobby(Hobby deliverable);
 	public Hobby getRandomHobby(int userId);
 	public List<ImageIdentificationDeliverable> getAllImageIdentificationDeliverables(int userId);
-	
+	public List<PlaceDescriptionDeliverable> getAllPlaceDescriptionDeliverables(int userId);
 }

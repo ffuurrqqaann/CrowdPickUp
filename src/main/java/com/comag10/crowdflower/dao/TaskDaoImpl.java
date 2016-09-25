@@ -371,14 +371,47 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Location fetchRandomLocation() {
+	public Location fetchRandomLocation(int userId) {
 		// TODO Auto-generated method stub
+		
+		List<PlaceDescriptionDeliverable> placeDescriptionDeliverables = this.fetchAllPlaceDescriptionDeliverables(userId);
+		
+		System.out.println( "place description list size is "+placeDescriptionDeliverables.size() );
+		
+		String queryStr = "";
+
+		if(placeDescriptionDeliverables.size()<=0) {
+			queryStr = " FROM Location ORDER BY rand()";
+		}
+		else {
+			queryStr = " FROM Location location WHERE location.id NOT IN (";
+
+			Iterator<PlaceDescriptionDeliverable> locationIterator = placeDescriptionDeliverables.iterator();
+			while( locationIterator.hasNext() ) {
+				queryStr+=locationIterator.next().getLocationDeliverable().getId();
+
+				if(locationIterator.hasNext())
+					queryStr+=",";
+			}
+
+			queryStr+= ")";
+		}
+
+
+		System.out.println("query string is "+queryStr);
+
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery(" FROM Location ORDER BY rand()");
-		query.setMaxResults(1);
+		Query query = session.createQuery(queryStr);
 		List<Location> locationList = query.list();
 
-		return locationList.get(0);
+		for( Location location : locationList ) {
+			System.out.println( "remaining id is "+location.getId() );
+		}
+
+		if(locationList.size()>0)
+			return locationList.get(0);
+		else
+			return null;		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -749,6 +782,17 @@ public class TaskDaoImpl implements TaskDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery(" FROM VisualAnalysisDeliverable WHERE fk_user_id="+userId);
 		List<VisualAnalysisDeliverable> deliverableList = query.list();
+
+		return deliverableList;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<PlaceDescriptionDeliverable> fetchAllPlaceDescriptionDeliverables(
+			int userId) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery(" FROM PlaceDescriptionDeliverable WHERE fk_user_id="+userId);
+		List<PlaceDescriptionDeliverable> deliverableList = query.list();
 
 		return deliverableList;
 	}
