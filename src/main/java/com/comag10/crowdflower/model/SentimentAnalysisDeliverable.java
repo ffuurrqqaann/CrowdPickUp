@@ -11,7 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name="AW_SENTIMENT_DELIVERABLES")
+@Table(name="aw_sentiment_deliverables")
+//@Table(name="AW_SENTIMENT_DELIVERABLES")
 public class SentimentAnalysisDeliverable {
 
 	@Id

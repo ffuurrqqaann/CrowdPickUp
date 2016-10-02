@@ -73,7 +73,6 @@ public class UserController {
 		//model.addAttribute("user", new Users());
 		System.out.println("In login failed method");
 		model.addAttribute("error", "true");
-
 		return "login";
 	}
 

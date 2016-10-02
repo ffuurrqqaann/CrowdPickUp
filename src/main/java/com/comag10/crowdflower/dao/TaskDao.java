@@ -13,6 +13,7 @@ import com.comag10.crowdflower.model.PlaceDescriptionQuestion;
 import com.comag10.crowdflower.model.SentimentAnalysis;
 import com.comag10.crowdflower.model.SentimentAnalysisDeliverable;
 import com.comag10.crowdflower.model.StudentHousingDeliverable;
+import com.comag10.crowdflower.model.Survey;
 import com.comag10.crowdflower.model.Task;
 import com.comag10.crowdflower.model.User;
 import com.comag10.crowdflower.model.VisualAnalysis;
@@ -71,4 +72,6 @@ public interface TaskDao {
 	public List<OuluHobbiesDeliverable> fetchAllOuluHobbiesDeliverables(int userId);
 	public List<StudentHousingDeliverable> fetchAllStudentHousingDeliverables(int userId);
 	public List<PlaceDescriptionDeliverable> fetchAllPlaceDescriptionDeliverables(int userId);
+	public Boolean checkUserSurvey(User u);
+	public Boolean submitUserSurvey(Survey deliverable);
 }

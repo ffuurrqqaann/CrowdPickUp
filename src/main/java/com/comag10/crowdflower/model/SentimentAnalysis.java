@@ -12,7 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="AW_SENTIMENT_RESOURCES")
+@Table(name="aw_sentiment_resources")
+//@Table(name="AW_SENTIMENT_RESOURCES")
 public class SentimentAnalysis {
 
 	@Id

@@ -13,7 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name="AW_IMAGE_IDENTIFICATION_RESOURCES")
+@Table(name="aw_image_identification_resources")
+//@Table(name="AW_IMAGE_IDENTIFICATION_RESOURCES")
 public class ImageIdentification {
 
 	@Id

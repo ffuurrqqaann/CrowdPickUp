@@ -76,10 +76,16 @@
 				<h2>Login</h2>
 				<c:if test="${not empty error}">
 					<div class="control-group error">
-						<label class="control-label" for="inputError">Username
-							and/or Password is incorrect.</label>
+						<label class="control-label" for="inputError">Username and/or Password is incorrect.</label>
 					</div>
 				</c:if>
+				
+				<%                      
+                    Exception error = (Exception) request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+                   if (error != null)
+                    out.write(error.getMessage());
+     			%>
+				
 				<form class="form-horizontal" action="j_spring_security_check"
 					name="f" method="post">
 					<div class="form-group">

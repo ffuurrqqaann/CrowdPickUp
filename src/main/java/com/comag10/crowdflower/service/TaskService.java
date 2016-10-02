@@ -13,6 +13,7 @@ import com.comag10.crowdflower.model.PlaceDescriptionQuestion;
 import com.comag10.crowdflower.model.SentimentAnalysis;
 import com.comag10.crowdflower.model.SentimentAnalysisDeliverable;
 import com.comag10.crowdflower.model.StudentHousingDeliverable;
+import com.comag10.crowdflower.model.Survey;
 import com.comag10.crowdflower.model.Task;
 import com.comag10.crowdflower.model.User;
 import com.comag10.crowdflower.model.VisualAnalysis;
@@ -62,4 +63,6 @@ public interface TaskService {
 	public Hobby getRandomHobby(int userId);
 	public List<ImageIdentificationDeliverable> getAllImageIdentificationDeliverables(int userId);
 	public List<PlaceDescriptionDeliverable> getAllPlaceDescriptionDeliverables(int userId);
+	public Boolean checkUserSurvey(User u);
+	public Boolean addNewUserSurveyDeliverable(Survey deliverable);
 }

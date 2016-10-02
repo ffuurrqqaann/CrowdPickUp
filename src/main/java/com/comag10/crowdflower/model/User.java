@@ -14,7 +14,8 @@ import javax.persistence.Entity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="USERS")
+@Table(name="users")
+//@Table(name="USERS")
 public class User {
 
 	@Id

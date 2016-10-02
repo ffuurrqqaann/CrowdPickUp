@@ -12,7 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name="AW_WORD_RELEVANCY_SENTENCES")
+@Table(name="aw_word_relevancy_sentences")
+//@Table(name="AW_WORD_RELEVANCY_SENTENCES")
 public class WordRelevancySentence {
 
 	@Id

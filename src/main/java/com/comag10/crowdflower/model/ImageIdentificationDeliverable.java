@@ -11,7 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name="AW_IMAGE_IDENTIFICATION_DELIVERABLES")
+@Table(name="aw_image_identification_deliverables")
+//@Table(name="AW_IMAGE_IDENTIFICATION_DELIVERABLES")
 public class ImageIdentificationDeliverable {
 
 	@Id

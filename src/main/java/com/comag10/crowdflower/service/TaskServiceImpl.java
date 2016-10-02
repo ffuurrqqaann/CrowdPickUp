@@ -18,6 +18,7 @@ import com.comag10.crowdflower.model.PlaceDescriptionQuestion;
 import com.comag10.crowdflower.model.SentimentAnalysis;
 import com.comag10.crowdflower.model.SentimentAnalysisDeliverable;
 import com.comag10.crowdflower.model.StudentHousingDeliverable;
+import com.comag10.crowdflower.model.Survey;
 import com.comag10.crowdflower.model.Task;
 import com.comag10.crowdflower.model.User;
 import com.comag10.crowdflower.model.VisualAnalysis;
@@ -290,6 +291,18 @@ public class TaskServiceImpl implements TaskService {
 	public List<PlaceDescriptionDeliverable> getAllPlaceDescriptionDeliverables(int userId) {
 		// TODO Auto-generated method stub
 		return this.taskDAO.fetchAllPlaceDescriptionDeliverables(userId);
+	}
+
+	@Transactional
+	public Boolean checkUserSurvey(User u) {
+		// TODO Auto-generated method stub
+		return this.taskDAO.checkUserSurvey(u);
+	}
+
+	@Transactional
+	public Boolean addNewUserSurveyDeliverable(Survey deliverable) {
+		// TODO Auto-generated method stub
+		return this.taskDAO.submitUserSurvey(deliverable);
 	}
 	
 }

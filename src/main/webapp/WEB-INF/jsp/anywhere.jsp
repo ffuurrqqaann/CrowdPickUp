@@ -110,6 +110,13 @@
 								Relevancy</a>
 						</div>
 					</div>
+					<c:if test="${not isSurveySubmitted}">
+						<div class="row" style="border: 0px solid #000000;">
+							<div class="span4" align="center" style="margin-top: 5%;">
+								<a href="survey.html" class="btn btn-primary">Survey</a>
+							</div>
+						</div>
+					</c:if>
 					<br />
 				</div>
 			</div>

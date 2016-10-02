@@ -27,6 +27,7 @@ import com.comag10.crowdflower.model.PlaceDescriptionDeliverable;
 import com.comag10.crowdflower.model.SentimentAnalysis;
 import com.comag10.crowdflower.model.SentimentAnalysisDeliverable;
 import com.comag10.crowdflower.model.StudentHousingDeliverable;
+import com.comag10.crowdflower.model.Survey;
 import com.comag10.crowdflower.model.Task;
 import com.comag10.crowdflower.model.User;
 import com.comag10.crowdflower.model.VisualAnalysis;
@@ -84,10 +85,87 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "/anywhere", method = RequestMethod.GET)
-	public String anywhere(ModelMap model) {
+	public String anywhere(ModelMap model, Principal principal) {
 		List<Task> anywhereTask = this.taskService.getAnywhereTasks(3);
+		
+		//get current user id from user info.
+		String username = principal.getName();
+		User user 		= this.userService.getUserByUsername(username);
+		
+		Boolean isSurveySubmitted = this.taskService.checkUserSurvey(user);
+		
+		System.out.println("survey submitted is = "+isSurveySubmitted);
+		
+		if(isSurveySubmitted)
+			model.addAttribute("isSurveySubmitted", "true");
+		else 
+			model.addAttribute("isSurveySubmitted", "false");
+
 		model.addAttribute("taskList", anywhereTask);
+		
 		return "anywhere";
+	}
+	
+	@RequestMapping(value = "/survey", method = RequestMethod.GET)
+	public String survey(ModelMap model, Principal principal) {
+		return "survey";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/survey-post", method = RequestMethod.POST)
+	public String surveyPost(ModelMap model, 
+							Principal principal,
+							@RequestParam("gender") String gender,
+							@RequestParam("age") String age,
+							@RequestParam("education") String education,
+							@RequestParam("fieldStudy") String fieldStudy,
+							@RequestParam("living") String living,
+							@RequestParam("isCrowdsourcingWorker") String isCrowdsourcingWorker,
+							@RequestParam("isReserved") String isReserved,
+							@RequestParam("isGenerallyTrusting") String isGenerallyTrusting,
+							@RequestParam("lazy") String lazy,
+							@RequestParam("isRelaxed") String isRelaxed,
+							@RequestParam("artisticInterests") String artisticInterests,
+							@RequestParam("isSociable") String isSociable,
+							@RequestParam("findFaults") String findFaults,
+							@RequestParam("job") String job,
+							@RequestParam("nervous") String nervous,
+							@RequestParam("activeImagination") String activeImagination
+							) {
+		
+		//get current user id from user info.
+		String username = principal.getName();
+		User user 		= this.userService.getUserByUsername(username);
+		
+		System.out.println("value of age is = "+age);
+		
+		Survey survey = new Survey();
+		
+		survey.setGender(gender);
+		survey.setAge(age);
+		survey.setEducation(Integer.parseInt(education));
+		survey.setField_study(Integer.parseInt(fieldStudy));
+		survey.setLiving(Integer.parseInt(living));
+		survey.setIs_crowdsourcing_worker(Integer.parseInt(isCrowdsourcingWorker));
+		survey.setIs_reserved(Integer.parseInt(isReserved));
+		survey.setIs_generally_trusting(Integer.parseInt(isGenerallyTrusting));
+		survey.setLazy(Integer.parseInt(lazy));
+		survey.setRelaxed(Integer.parseInt(isRelaxed));
+		survey.setArtistic_interest(Integer.parseInt(artisticInterests));
+		survey.setSociable(Integer.parseInt(isSociable));
+		survey.setFind_faults(Integer.parseInt(findFaults));
+		survey.setThorough_job(Integer.parseInt(job));
+		survey.setNervous(Integer.parseInt(nervous));
+		survey.setActive_imagination(Integer.parseInt(activeImagination));
+		survey.setFk_user_id(user.getId());
+		
+		try {
+			this.taskService.addNewUserSurveyDeliverable(survey);
+
+			return "{\"status\":\"200\", \"message\":\"Your survey has been submitted.\"}";
+		} catch(Exception e) {
+			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+		}
 	}
 
 	@RequestMapping(value = "/imageidentification", method = RequestMethod.GET)

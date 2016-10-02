@@ -12,7 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="AW_VISUAL_RESOURCES")
+@Table(name="aw_visual_resources")
+//@Table(name="AW_VISUAL_RESOURCES")
 public class VisualAnalysis {
 
 	@Id

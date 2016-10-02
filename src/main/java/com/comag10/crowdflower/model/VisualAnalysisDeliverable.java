@@ -11,7 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name="AW_VISUAL_DELIVERABLES")
+@Table(name="aw_visual_deliverables")
+//@Table(name="AW_VISUAL_DELIVERABLES")
 public class VisualAnalysisDeliverable {
 
 	@Id

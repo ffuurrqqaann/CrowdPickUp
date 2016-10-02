@@ -15,7 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name="LOCATION_PLACE_DESCRIPTION_QUESTIONS")
+@Table(name="location_place_description_questions")
+//@Table(name="LOCATION_PLACE_DESCRIPTION_QUESTIONS")
 public class PlaceDescriptionQuestion {
 
 	@Id

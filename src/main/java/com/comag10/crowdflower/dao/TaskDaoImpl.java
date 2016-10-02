@@ -22,6 +22,7 @@ import com.comag10.crowdflower.model.PlaceDescriptionQuestion;
 import com.comag10.crowdflower.model.SentimentAnalysis;
 import com.comag10.crowdflower.model.SentimentAnalysisDeliverable;
 import com.comag10.crowdflower.model.StudentHousingDeliverable;
+import com.comag10.crowdflower.model.Survey;
 import com.comag10.crowdflower.model.Task;
 import com.comag10.crowdflower.model.User;
 import com.comag10.crowdflower.model.VisualAnalysis;
@@ -795,5 +796,31 @@ public class TaskDaoImpl implements TaskDao {
 		List<PlaceDescriptionDeliverable> deliverableList = query.list();
 
 		return deliverableList;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Boolean checkUserSurvey(User u) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery(" FROM Survey WHERE fk_user_id="+u.getId());
+		List<Survey> surveyList = query.list();
+
+		if(surveyList.size()>0)
+			return true;
+		else 
+			return false;
+	}
+	
+	public Boolean submitUserSurvey(Survey survey) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+
+		try {
+			session.persist(survey);
+		} catch( Exception e ) {
+			return false;
+		}
+
+		return true;
 	}
 }

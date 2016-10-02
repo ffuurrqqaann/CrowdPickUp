@@ -14,7 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name="AW_WORD_RELEVANCY_WORDS")
+@Table(name="aw_word_relevancy_words")
+//@Table(name="AW_WORD_RELEVANCY_WORDS")
 public class WordRelevancyWord {
 
 	@Id
