@@ -128,7 +128,7 @@
 					</div>
 					<div class="row" style="border: 0px solid #000000;">
 						<div class="span4" align="center" style="margin-top: 5%;">
-							<a href="place-description.html" class="btn btn-primary">Located
+							<a href="locations.html" class="btn btn-primary">Located
 								Tasks</a>
 						</div>
 					</div>

@@ -3,8 +3,10 @@ package com.comag10.crowdflower.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -167,6 +169,21 @@ public class TaskController {
 			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
 		}
 	}
+	
+	@RequestMapping(value = "/locations", method = RequestMethod.GET)
+	public String locations(ModelMap model, Principal principal) {
+		
+		//get current user id from user info.
+		String username = principal.getName();
+		User user 		= this.userService.getUserByUsername(username);
+		
+		List<Location> locations = this.taskService.getLocations(user);
+		
+		model.addAttribute("locations", locations);
+		
+		return "locations";
+	}
+
 
 	@RequestMapping(value = "/imageidentification", method = RequestMethod.GET)
 	public String imageIdentification(ModelMap model, Principal principal) {
@@ -268,12 +285,7 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "/place-description", method = RequestMethod.GET)
-	public String placeDescription(ModelMap model, Principal principal) {
-		
-		//get current user id from user info.
-		String username = principal.getName();
-		User user = this.userService.getUserByUsername(username);
-		
+	public String placeDescription(ModelMap model, Principal principal, HttpServletRequest request) {
 		placeDescriptionStartTime = Utils.getCurrentTime();
 
 		System.out.println("place description start date " + placeDescriptionStartTime);
@@ -282,7 +294,7 @@ public class TaskController {
 		model.addAttribute("task", task);
 
 		//get the location.
-		Location location = this.taskService.getRandomLocation(user);
+		Location location = this.taskService.getLocationById(Integer.parseInt(request.getParameter("locationId")));
 		if(location==null) {
 			model.addAttribute("location", "");
 		} else {

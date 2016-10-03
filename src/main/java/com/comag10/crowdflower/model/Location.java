@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 
 @Entity
 @Table(name="locations")
-//@Table(name="LOCATIONS")
 public class Location {
 
 	@Id

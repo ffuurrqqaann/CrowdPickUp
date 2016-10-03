@@ -44,7 +44,7 @@ public interface TaskDao {
 	public WordRelevancySentence fetchSentenceBySentenceId(int id);
 	public List<PlaceDescriptionQuestion> fetchAllQuestions();
 	public Boolean submitPlaceDescriptionDeliverable(PlaceDescriptionDeliverable deliverable);
-	public Location fetchRandomLocation(int id);
+	public List<Location> fetchLocations(int id);
 	public Location fetchLocationById(int id);
 	public Boolean submitOuluHobbiesDeliverable(OuluHobbiesDeliverable deliverable);
 	public Boolean checkUserDeliverable(User user, String locationId);

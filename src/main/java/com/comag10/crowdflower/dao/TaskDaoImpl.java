@@ -372,7 +372,7 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Location fetchRandomLocation(int userId) {
+	public List<Location> fetchLocations(int userId) {
 		// TODO Auto-generated method stub
 		
 		List<PlaceDescriptionDeliverable> placeDescriptionDeliverables = this.fetchAllPlaceDescriptionDeliverables(userId);
@@ -382,7 +382,7 @@ public class TaskDaoImpl implements TaskDao {
 		String queryStr = "";
 
 		if(placeDescriptionDeliverables.size()<=0) {
-			queryStr = " FROM Location ORDER BY rand()";
+			queryStr = " FROM Location";
 		}
 		else {
 			queryStr = " FROM Location location WHERE location.id NOT IN (";
@@ -398,7 +398,6 @@ public class TaskDaoImpl implements TaskDao {
 			queryStr+= ")";
 		}
 
-
 		System.out.println("query string is "+queryStr);
 
 		Session session = this.sessionFactory.getCurrentSession();
@@ -410,7 +409,7 @@ public class TaskDaoImpl implements TaskDao {
 		}
 
 		if(locationList.size()>0)
-			return locationList.get(0);
+			return locationList;
 		else
 			return null;		
 	}

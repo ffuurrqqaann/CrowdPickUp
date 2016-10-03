@@ -44,7 +44,7 @@ public interface TaskService {
 	public WordRelevancySentence getSentenceBySentenceId(int id);
 	public List<PlaceDescriptionQuestion> getAllQuestions();
 	public Boolean addNewPlaceDescriptionDeliverable(PlaceDescriptionDeliverable deliverable);
-	public Location getRandomLocation(User user);
+	public List<Location> getLocations(User user);
 	public Location getLocationById(int id);
 	public Boolean addNewOuluHobbiesDeliverable(OuluHobbiesDeliverable deliverable);
 	public Boolean checkUserDeliverable(User user, String locationId);

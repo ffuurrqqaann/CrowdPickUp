@@ -169,7 +169,7 @@
 				alert("Your Task has been submitted successfully.");
 			}
 
-			window.location.replace("place-description.html");
+			window.location.replace("locations.html");
 		});
 	}
 </script>
