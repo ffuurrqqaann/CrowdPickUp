@@ -13,5 +13,3 @@ Key technologies/frameworks:
 6. Bootstrap
 
 The Application is hosted on Amazon EC2 and can be found at https://ec2-52-57-105-24.eu-central-1.compute.amazonaws.com:8443/CrowdFlow/tasks.html
-
-Note: The application is under testing and bug fixing phase.
