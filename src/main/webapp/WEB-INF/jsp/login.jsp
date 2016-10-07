@@ -67,7 +67,7 @@
 	<div class="container-fluid">
 		<div class="row" style="border: 0px solid #000000;">
 			<div class="span4" align="center" style="margin-top: 5%;">
-				<img src="images/logo.png" class="img-responsive" alt="logo"
+				<img src="images/applogo.png" class="img-responsive" alt="logo"
 					width="121" height="60" />
 			</div>
 		</div>
@@ -79,12 +79,11 @@
 						<label class="control-label" for="inputError">Username and/or Password is incorrect.</label>
 					</div>
 				</c:if>
-				
-				<%                      
-                    Exception error = (Exception) request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-                   if (error != null)
-                    out.write(error.getMessage());
-     			%>
+				<c:if test="${not empty success}">
+					<div class="alert alert-success">
+					  <strong>Success!</strong> Your Account has been created, login to continue.
+					</div>
+				</c:if>
 				
 				<form class="form-horizontal" action="j_spring_security_check"
 					name="f" method="post">

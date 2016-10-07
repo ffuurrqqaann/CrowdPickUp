@@ -75,7 +75,7 @@
 
 			var sentiment 	=	$('input[name="sentiment"]:checked').val();
 			var grountTruth	=	$('input[name="groundTruth"]').val();
-
+			
 			if (jQuery.type(sentiment) === "undefined") {
 				alert("Please select a sentiment.");
 				return;

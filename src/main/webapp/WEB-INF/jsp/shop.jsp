@@ -73,12 +73,12 @@
 
 		var cost = "";
 
-		if (item == "burger") {
-			cost = jQuery("#burger").val();
-		} else if (item == "coffee") {
-			cost = jQuery("#coffee").val();
-		} else if (item == "lunch") {
-			cost = jQuery("#lunch").val();
+		if (item == "tenEuroVoucher") {
+			cost = jQuery("#tenEuroVoucher").val();
+		} else if (item == "twentyFiveEuroVoucher") {
+			cost = jQuery("#twentyFiveEuroVoucher").val();
+		} else if (item == "fiftyEuroVoucher") {
+			cost = jQuery("#fiftyEuroVoucher").val();
 		}
 
 		jQuery.ajax({
@@ -138,14 +138,14 @@
 	<div id="helpDialoge" title="CrowdFlow Help">
 		
 		<p>CrowdFlow is a Research project developed under the supervision of Center for Ubiquitous Computing, University Of Oulu.</p>
-		<p>The purpose of this project is to asses the feasibility and performance of Situated, Located and Anywhere Crowdsourcing as well as a basic understanding of its worker's behaviors.</p>
-		<p>In order to claim your prizes send an email to admin@comag10.com and schedule an appointment.</p>
+		<p>The purpose of this project is to asses the feasibility and performance of Local Knowledge, Location Based and General Crowdsourcing tasks as well as a basic understanding of its worker's behaviors.</p>
+		<p>In order to claim your prizes send an email to furqan.ahmed@student.oulu.fi (cc: Jorge.Goncalves@oulu.fi) and schedule an appointment.</p>
 		
 	</div>
 	<div class="container">
 		<div class="row" style="border: 0px solid #000000;">
 			<div class="span4" align="center" style="margin-top: 5%;">
-				<img src="images/logo.png" class="img-responsive" alt="logo"
+				<img src="images/applogo.png" class="img-responsive" alt="logo"
 					width="121" height="60" />
 			</div>
 		</div>
@@ -163,29 +163,26 @@
 		style="border: 0px solid #000000; height: 100%;">
 		<div class="row-fluid">
 			<div class="span4"></div>
+			<div class="alert alert-warning">
+				<strong>Disclaimer!</strong> Prizes will only be awarded If the tasks will be carried out seriously.
+			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<a href="#" class="thumbnail" onclick="openDialogue('coffee')">
-						<p>${freeCoffeeDescription}</p> <img src="${coffeeImage}"
-						style="width: 150px; height: 150px" class="img-thumbnail">
-						<p>${freeCoffeeCost}Coins</p> <input type="hidden" id="coffee"
-						name="coffee" value="${freeCoffeeCost}" />
+					<a href="#" class="thumbnail" onclick="openDialogue('tenEuroVoucher')">
+						 <img src="images/shop/10-euro-voucher.png" style="width: 150px; height: 150px" class="img-thumbnail">
+						 <input type="hidden" id="tenEuroVoucher" name="tenEuroVoucher" value="1000" />
 					</a>
 				</div>
 				<div class="col-md-4">
-					<a href="#" class="thumbnail" onclick="openDialogue('lunch')">
-						<p>${freeLunchDescription}</p> <img src="${lunchImage}"
-						style="width: 150px; height: 150px" class="img-thumbnail">
-						<p>${freelunchCost}Coins</p> <input type="hidden" id="lunch"
-						name="lunch" value="${freelunchCost}" />
+					<a href="#" class="thumbnail" onclick="openDialogue('twentyFiveEuroVoucher')">
+						 <img src="images/shop/25-euro-voucher.png" style="width: 150px; height: 150px" class="img-thumbnail">
+						 <input type="hidden" id="twentyFiveEuroVoucher" name="twentyFiveEuroVoucher" value="2500" />
 					</a>
 				</div>
 				<div class="col-md-4">
-					<a href="#" class="thumbnail" onclick="openDialogue('burger')">
-						<p>${burgerKingDescription}</p> <img src="${burgerKingImage}"
-						style="width: 150px; height: 150px" class="img-thumbnail">
-						<p>${freeBurgerCost}Coins</p> <input type="hidden" id="burger"
-						name="burger" value="${freeBurgerCost}" />
+					<a href="#" class="thumbnail" onclick="openDialogue('fiftyEuroVoucher')">
+						 <img src="images/shop/50-euro-voucher.png" style="width: 150px; height: 150px" class="img-thumbnail">
+						 <input type="hidden" id="fiftyEuroVoucher" name="fiftyEuroVoucher" value="5000" />
 					</a>
 				</div>
 			</div>

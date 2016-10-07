@@ -17,6 +17,23 @@
 			<intercept-url pattern="/loginFailed.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 			<intercept-url pattern="/logout.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 			<intercept-url pattern="/tasks**" access="ROLE_USER" />
+			<intercept-url pattern="/location**" access="ROLE_USER" />
+			<intercept-url pattern="/situated**" access="ROLE_USER" />
+			<intercept-url pattern="/anywhere**" access="ROLE_USER" />
+			<intercept-url pattern="/locations**" access="ROLE_USER" />
+			<intercept-url pattern="/survey**" access="ROLE_USER" />
+			<intercept-url pattern="/visual-analysis**" access="ROLE_USER" />
+			<intercept-url pattern="/sentiment-analysis**" access="ROLE_USER" />
+			<intercept-url pattern="/word-relevancy**" access="ROLE_USER" />
+			<intercept-url pattern="/imageidentification**" access="ROLE_USER" />
+			<intercept-url pattern="/student-housing**" access="ROLE_USER" />
+			<intercept-url pattern="/oulu-hobbies**" access="ROLE_USER" />
+			<intercept-url pattern="/place-description**" access="ROLE_USER" />
+			<intercept-url pattern="/profile**" access="ROLE_USER" />
+			<intercept-url pattern="/wordrelevancy**" access="ROLE_USER" />
+			<intercept-url pattern="/wordtranslation**" access="ROLE_USER" />
+			<intercept-url pattern="/shop**" access="ROLE_USER" />
+			<intercept-url pattern="/purchase**" access="ROLE_USER" />
 			<form-login login-page="/login.html" authentication-failure-url="/loginFailed.html"/>
 			<logout logout-success-url="/login.html" />
 		</http>

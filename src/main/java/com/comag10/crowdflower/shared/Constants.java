@@ -6,10 +6,10 @@ public class Constants {
 	public static final int WORD_RELEVANCY_COINS = 10;
 	
 	/* HOBBIES_IN_OULU_COINS represents the total coins that the user will receive upon hobbies in oulu task completion */
-	public static final int HOBBIES_IN_OULU_COINS = 10;
+	public static final int HOBBIES_IN_OULU_COINS = 35;
 	
 	/* DESCRIBE_THE_LOCATION_COINS represents the total coins that the user will receive upon location task completion */
-	public static final int DESCRIBE_THE_LOCATION_COINS = 10;
+	public static final int DESCRIBE_THE_LOCATION_COINS = 250;
 	
 	/* SENTIMENT_ANALYSIS_COINS represents the total coins that the user will receive upon sentiment analysis task completion */
 	public static final int SENTIMENT_ANALYSIS_COINS = 10;
@@ -18,10 +18,10 @@ public class Constants {
 	public static final int VISUAL_ANALYSIS_COINS = 10;
 	
 	/* IMAGE_IDENTIFICATON_COINS represents the total coins that the user will receive upon image identification task completion */
-	public static final int IMAGE_IDENTIFICATON_COINS = 10;
+	public static final int IMAGE_IDENTIFICATON_COINS = 20;
 	
 	/* STUDENT_HOUSING_COINS represents the total coins that the user will receive upon student housing task completion */
-	public static final int STUDENT_HOUSING_COINS = 10;
+	public static final int STUDENT_HOUSING_COINS = 50;
 	
 	/* COFFEE_TICKET represents the cost of a coffee ticket */
 	public static final int COFFEE_TICKET = 10;
@@ -40,5 +40,8 @@ public class Constants {
 	
 	/* FREE_LUNCH_COUPON represents the cost of a free lunch coupon */
 	public static final String FREE_LUNCH_COUPON_DESCRIPTION = "This is a test description off free burger king coupon";
+	
+	/* SURVEY TASK COINS */
+	public static final int SURVEY_TASK_COINS = 300;
 	
 }

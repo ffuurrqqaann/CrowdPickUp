@@ -30,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.comag10.crowdflower.Utils;
 import com.comag10.crowdflower.model.Authorities;
 import com.comag10.crowdflower.model.User;
+import com.comag10.crowdflower.service.TaskService;
 import com.comag10.crowdflower.service.UserService;
 import com.comag10.crowdflower.ui.model.Signup;
 import com.comag10.crowdflower.utilities.HibernateUtilities;
@@ -41,7 +42,10 @@ public class UserController {
 
 	private UserService userService;
 	private PasswordValidator passwordValidator = null;
-
+	
+	@Autowired
+	private TaskService taskService;
+	
 	@Autowired(required=true)
 	@Qualifier(value="UserService")
 	public void setUserService(UserService userService) {
@@ -103,7 +107,19 @@ public class UserController {
 			model.addAttribute("coins", user.getBalance());
 			model.addAttribute("username", user.getUsername());
 			
+			Boolean isSurveySubmitted = this.taskService.checkUserSurvey(user);
+			
+			System.out.println("survey submitted is = "+isSurveySubmitted);
+			
+			if(isSurveySubmitted)
+				model.addAttribute("isSurveySubmitted", "true");
+			else 
+				model.addAttribute("isSurveySubmitted", "false");
+			
 		}
+		
+		
+		
 		return "tasks";
 	}
 
@@ -156,15 +172,16 @@ public class UserController {
 			
 			this.userService.addUserAuthorities(au);
 			
+			//adding signup success message.
+			model.addAttribute("success", "true");
+			
 			//redirecting to login page after successful signup.
-			response.sendRedirect("login.html");
+			return "login";
 
 		} catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 			
 			return "signup";
 		}
-		
-		return "signup";
 	}
 }

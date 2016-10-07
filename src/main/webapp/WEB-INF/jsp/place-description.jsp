@@ -37,16 +37,59 @@
 	type="text/javascript"></script>
 
 <script>
+	
+	var crowdedness 	= "";
+	var weather 		= "";
+	var noise 			= "";
+	var traffic 		= "";
+	var services 		= "";
+	var easylocation 	= "";
+	var locationId 		= "";
+	var localFood		= "";
+	
 	jQuery(document).ready(function() {
 		//form submit.
 		$("#btnSubmit").click(function() {
+			crowdedness 	= $('input[name="crowdedness"]:checked').val();
+			weather 		= $('input[name="weather"]:checked').val();
+			noise 			= $('input[name="noise"]:checked').val();
+			traffic 		= $('input[name="traffic"]:checked').val();
+			services 		= $('input[name="services"]:checked').val();
+			easylocation 	= $('input[name="easylocation"]:checked').val();
+			locationId 		= $('input[name="locationId"]').val();
+			localFood 		= $("#localfood").val();
+
+			if (jQuery.type(crowdedness) === "undefined") {
+				alert("Please rate crowdedness");
+				return;
+			} else if (jQuery.type(weather) === "undefined") {
+				alert("Please rate weather");
+				return;
+			} else if (jQuery.type(noise) === "undefined") {
+				alert("Please rate noise");
+				return;
+			} else if (localFood == "") {
+				alert("Local food field must not be empty.");
+				return;
+			} else if (jQuery.type(traffic) === "undefined") {
+				alert("Please rate traffic");
+				return;
+			} else if (jQuery.type(services) === "undefined") {
+				alert("Please rate services");
+				return;
+			} else if (jQuery.type(easylocation) === "undefined") {
+				alert("Please rate easylocation");
+				return;
+			}
+			
+			$("#btnSubmit").attr('disabled','disabled');
+			$("#loading").css("visibility", "visible");
+			
 			getCurrentLocation();
 		});
 
 		jQuery("#btnMap").on("click", function(e) {
-			//alert("map button clicked.");
 			e.preventDefault();
-			//jQuery("#mapDialoge").dialog("open");
 
 			initMap(this);
 			jQuery("#mapDialoge").dialog("open");
@@ -91,15 +134,11 @@
 			    });
 		    });
 			if(locationPostalCode==calculatedPostalCode) {
-				var localFood = $("#localfood").val();
-				if (localFood == "") {
-					alert("Local food field must not be empty.");
-					return;
-				}
-
-				submitTask(localFood);
+				submitTask();
 			} else {
 				alert("You are not at a correct location. Please be there and submit again. Thanks!!");
+				$("#btnSubmit").removeAttr('disabled');
+				$("#loading").css("visibility", "hidden");
 			}
 		});
 	}
@@ -116,35 +155,7 @@
 	}
 
 	//form submit function.
-	function submitTask(localFood) {
-		var crowdedness = $('input[name="crowdedness"]:checked').val();
-		var weather = $('input[name="weather"]:checked').val();
-		var noise = $('input[name="noise"]:checked').val();
-		var traffic = $('input[name="traffic"]:checked').val();
-		var services = $('input[name="services"]:checked').val();
-		var easylocation = $('input[name="easylocation"]:checked').val();
-		var locationId = $('input[name="locationId"]').val();
-
-		if (jQuery.type(crowdedness) === "undefined") {
-			alert("Please rate crowdedness");
-			return;
-		} else if (jQuery.type(weather) === "undefined") {
-			alert("Please rate weather");
-			return;
-		} else if (jQuery.type(noise) === "undefined") {
-			alert("Please rate noise");
-			return;
-		} else if (jQuery.type(traffic) === "undefined") {
-			alert("Please rate traffic");
-			return;
-		} else if (jQuery.type(services) === "undefined") {
-			alert("Please rate services");
-			return;
-		} else if (jQuery.type(easylocation) === "undefined") {
-			alert("Please rate easylocation");
-			return;
-		}
-
+	function submitTask() {
 		$.ajax({
 			method : "POST",
 			url : "placedescription-post.html",
@@ -220,7 +231,7 @@
 	<div class="container">
 		<div class="row" style="border: 0px solid #000000;">
 			<div class="span4" align="center" style="margin-top: 5%;">
-				<img src="images/logo.png" class="img-responsive" alt="logo"
+				<img src="images/applogo.png" class="img-responsive" alt="logo"
 					width="121" height="60" />
 			</div>
 		</div>
@@ -438,6 +449,9 @@
 					<br />
 				</div>
 				<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
+				<div class="form-group" style="visibility:hidden;" id="loading">
+					<label>Please wait...</label>
+				</div>
 			</form>
 			</c:when>
 			<c:otherwise>

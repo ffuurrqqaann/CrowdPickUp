@@ -22,21 +22,6 @@ public class ShopController {
 	
 	@RequestMapping(value="/shop")
 	public String loadShop (Model model) {
-		//free coffee ticket data.
-		model.addAttribute("freeCoffeeDescription", Constants.COFFEE_TICKET_DESCRIPTION);
-		model.addAttribute("coffeeImage", "images/shop/coffee-ticket.gif");
-		model.addAttribute("freeCoffeeCost", Constants.COFFEE_TICKET);
-
-		//free lunch coupon data.
-		model.addAttribute("freeLunchDescription", Constants.FREE_LUNCH_COUPON_DESCRIPTION);
-		model.addAttribute("lunchImage", "images/shop/lunch-ticket.png");
-		model.addAttribute("freelunchCost", Constants.FREE_LUNCH_COUPON);
-
-		//free burger king coupon data.
-		model.addAttribute("burgerKingDescription", Constants.BURGER_KING_COUPON_DESCRIPTION);
-		model.addAttribute("burgerKingImage", "images/shop/burger-king-coupon.jpg");
-		model.addAttribute("freeBurgerCost", Constants.BURGER_KING_COUPON);
-
 		return "shop";
 	}
 
@@ -62,7 +47,7 @@ public class ShopController {
 		Boolean isUserUpdated = this.userService.updateUser(user);
 		
 		if (isUserUpdated) {
-			return "{\"status\":\"200\", \"message\":\"You have successfully purchased the item. Please send an email to admin@comag10.com to fix an appointment and claim your prize.Thanks!!!\"}";
+			return "{\"status\":\"200\", \"message\":\"You have successfully purchased the item. Please send an email to furqan.ahmed@student.oulu.fi (cc: Jorge.Goncalves@oulu.fi) to fix an appointment and claim your prize.Thanks!!!\"}";
 		}
 		
 		return "shop";

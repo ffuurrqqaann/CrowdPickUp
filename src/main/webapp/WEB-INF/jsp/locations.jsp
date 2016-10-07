@@ -110,7 +110,7 @@
 	<div class="container">
 		<div class="row" style="border: 0px solid #000000;">
 			<div class="span4" align="center" style="margin-top: 5%;">
-				<img src="images/logo.png" class="img-responsive" alt="logo"
+				<img src="images/applogo.png" class="img-responsive" alt="logo"
 					width="121" height="60" />
 			</div>
 		</div>
@@ -134,6 +134,7 @@
 				<div class="hero-unit" align="center">
 					<c:choose>
 						<c:when test="${not empty locations}">
+							<h3>You need to go to each of these specific places in order to complete the related task</h3>
 							<c:forEach var="location" items="${locations}">
 								<div class="row" style="border: 0px solid #000000;">
 									<div class="span4" align="center" style="margin-top: 5%;">

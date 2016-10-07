@@ -131,7 +131,7 @@
 	<div class="container">
 		<div class="row" style="border: 0px solid #000000;">
 			<div class="span4" align="center" style="margin-top: 5%;">
-				<img src="images/logo.png" class="img-responsive" alt="logo"
+				<img src="images/applogo.png" class="img-responsive" alt="logo"
 					width="121" height="60" />
 			</div>
 		</div>
@@ -179,17 +179,12 @@
 						</div>
 						<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 						<button type="button" class="btn btn-primary" id="btnSkip">Skip</button>
-						<a href="newhobby.html" class="btn btn-primary">Add New Hobby</a>
 					</form>
 				</c:when>
 				<c:otherwise>
 					<div class="form-group">
 						<label for="email">You have done all Oulu Hobbies tasks.
 							Please proceed to other tasks or add a new one.</label>
-					</div>
-					<div class="form-group">
-						<a href="newhobby.html" class="btn btn-primary">Add a New
-							Hobby</a>
 					</div>
 				</c:otherwise>
 			</c:choose>

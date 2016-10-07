@@ -88,13 +88,13 @@
 <body class="bg">
 	<div id="helpDialoge" title="CrowdFlow Help">
 		<p>CrowdFlow is a Research project developed under the supervision of Center for Ubiquitous Computing, University Of Oulu.</p>
-		<p>The purpose of this project is to asses the feasibility and performance of Situated, Located and Anywhere Crowdsourcing as well as a basic understanding of its worker's behaviors.</p>
-		<p>In order to claim your prizes send an email to admin@comag10.com and schedule an appointment.</p>
+		<p>The purpose of this project is to asses the feasibility and performance of Local Knowledge, Location Based and General Crowdsourcing tasks as well as a basic understanding of its worker's behaviors.</p>
+		<p>In order to claim your prizes send an email to furqan.ahmed@student.oulu.fi (cc: Jorge.Goncalves@oulu.fi) and schedule an appointment.</p>
 	</div>
 	<div class="container">
 		<div class="row" style="border: 0px solid #000000;">
 			<div class="span4" align="center" style="margin-top: 5%;">
-				<img src="images/logo.png" class="img-responsive" alt="logo"
+				<img src="images/applogo.png" class="img-responsive" alt="logo"
 					width="121" height="60" />
 			</div>
 		</div>
@@ -122,22 +122,27 @@
 
 					<div class="row" style="border: 0px solid #000000;">
 						<div class="span4" align="center" style="margin-top: 5%;">
-							<a href="situated.html" class="btn btn-primary">Situated
-								Tasks</a>
+							<a href="situated.html" class="btn btn-primary">Local Knowledge Tasks</a>
 						</div>
 					</div>
 					<div class="row" style="border: 0px solid #000000;">
 						<div class="span4" align="center" style="margin-top: 5%;">
-							<a href="locations.html" class="btn btn-primary">Located
-								Tasks</a>
+							<a href="locations.html" class="btn btn-primary">Location Based Tasks</a>
 						</div>
 					</div>
 					<div class="row" style="border: 0px solid #000000;">
 						<div class="span4" align="center" style="margin-top: 5%;">
-							<a href="anywhere.html" class="btn btn-primary">Anywhere
-								Tasks</a>
+							<a href="anywhere.html" class="btn btn-primary">General Tasks</a>
 						</div>
 					</div>
+					<c:if test="${not isSurveySubmitted}">
+						<div class="row" style="border: 0px solid #000000;">
+							<div class="span4" align="center" style="margin-top: 5%;">
+								<a href="survey.html" class="btn btn-primary">Survey</a>
+							</div>
+						</div>
+					</c:if>
+					<br />
 					<br /> <br />
 					<!-- </div> -->
 				</div>

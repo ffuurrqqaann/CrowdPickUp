@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -73,14 +72,15 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "/situated", method = RequestMethod.GET)
-	public String situated(ModelMap model) {
+	public String situated(ModelMap model, Principal principal) {
+		
 		List<Task> situatedTasks = this.taskService.getSituatedTasks(1);
 		model.addAttribute("taskList", situatedTasks);
 		return "situated";
 	}
 
 	@RequestMapping(value = "/location", method = RequestMethod.GET)
-	public String location(ModelMap model) {
+	public String location(ModelMap model, Principal principal) {
 		List<Task> locationBasedTask = this.taskService.getLocationbasedTasks(2);
 		model.addAttribute("taskList", locationBasedTask);
 		return "location";
@@ -163,10 +163,11 @@ public class TaskController {
 		
 		try {
 			this.taskService.addNewUserSurveyDeliverable(survey);
+			this.userService.updateUserBalance(user, Constants.SURVEY_TASK_COINS);
 
 			return "{\"status\":\"200\", \"message\":\"Your survey has been submitted.\"}";
 		} catch(Exception e) {
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"Survey cannot be posted at this time. Please try again later.\"}";
 		}
 	}
 	
@@ -187,7 +188,7 @@ public class TaskController {
 
 	@RequestMapping(value = "/imageidentification", method = RequestMethod.GET)
 	public String imageIdentification(ModelMap model, Principal principal) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user 		= this.userService.getUserByUsername(username);
@@ -211,7 +212,7 @@ public class TaskController {
 
 	@RequestMapping(value = "/visual-analysis", method = RequestMethod.GET)
 	public String visualAnalysis(ModelMap model, Principal principal) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user 		= this.userService.getUserByUsername(username);
@@ -261,7 +262,7 @@ public class TaskController {
 
 	@RequestMapping(value = "/word-relevancy", method = RequestMethod.GET)
 	public String wordRelevance(ModelMap model, Principal principal) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user = this.userService.getUserByUsername(username);
@@ -286,6 +287,7 @@ public class TaskController {
 
 	@RequestMapping(value = "/place-description", method = RequestMethod.GET)
 	public String placeDescription(ModelMap model, Principal principal, HttpServletRequest request) {
+		
 		placeDescriptionStartTime = Utils.getCurrentTime();
 
 		System.out.println("place description start date " + placeDescriptionStartTime);
@@ -342,17 +344,11 @@ public class TaskController {
 			@RequestParam("maintenance") String maintenance,
 			@RequestParam("isSkipped") String isSkipped,
 			HttpServletResponse response) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user 		= this.userService.getUserByUsername(username);
 
-		//need to change as per the discussion.
-		/*Boolean isUserDeliverableExist = this.taskService.checkUserDeliverable(user, locationId);
-
-		if( isUserDeliverableExist )
-			return "{\"status\":\"405\", \"message\":\"You have already submitted the deliverable, Proceed to other tasks.\"}";
-		 */
 		String studentHousingEndTime = Utils.getCurrentTime();
 
 		long timeTaken = Utils.getTimeDifference(studentHousingStartTime, studentHousingEndTime);
@@ -394,7 +390,7 @@ public class TaskController {
 			this.taskService.addNewStudentHousingDeliverable(deliverable);
 
 			//skip coin management if the user skipped the task.
-			if( isSkipped.equals("1") )
+			if( isSkipped.equals("0") )
 				this.userService.updateUserBalance(user, Constants.STUDENT_HOUSING_COINS);
 
 			return "{\"status\":\"200\", \"message\":\"message inserted successfully\"}";
@@ -402,13 +398,13 @@ public class TaskController {
 
 			e.printStackTrace();
 
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"The task cannot be posted at this time. Please try again later.\"}";
 		}
 	}
 
 	@RequestMapping(value = "/oulu-hobbies", method = RequestMethod.GET)
 	public String ouluHobbies(ModelMap model, Principal principal) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user = this.userService.getUserByUsername(username);
@@ -439,16 +435,11 @@ public class TaskController {
 			@RequestParam("isSkipped") String isSkipped,
 			Principal principal,
 			HttpServletResponse response) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user = this.userService.getUserByUsername(username);
 
-		/*Boolean isUserDeliverableExist = this.taskService.checkUserHobbiesDeliverable(user);
-
-		if( isUserDeliverableExist )
-			return "{\"status\":\"405\", \"message\":\"You have already submitted the deliverable, Proceed to other tasks.\"}";
-		 */
 		System.out.println("in task controller post");
 		String ouluHobbiesEndTime = Utils.getCurrentTime();
 
@@ -475,12 +466,12 @@ public class TaskController {
 
 			return "{\"status\":\"200\", \"message\":\"message inserted successfully\"}";
 		} catch(Exception e) {
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"The task cannot be posted at this time. Please try again later.\"}";
 		}	
 	}
 
 	@RequestMapping(value = "/newhobby", method = RequestMethod.GET)
-	public String addNewHobby(ModelMap model) {
+	public String addNewHobby(ModelMap model, Principal principal) {
 		addNewHobbyStartTime = Utils.getCurrentTime();
 
 		return "newhobby";
@@ -489,7 +480,7 @@ public class TaskController {
 	@ResponseBody
 	@RequestMapping(value = "/newhobby-post", method = RequestMethod.POST)
 	public String addNewHobbyPostData(ModelMap model, @RequestParam("name") String name, Principal principal) {
-
+		
 		String addNewHobbyEndTime = Utils.getCurrentTime();
 		long timeTaken = Utils.getTimeDifference(addNewHobbyStartTime, addNewHobbyEndTime);
 
@@ -517,16 +508,15 @@ public class TaskController {
 
 			return "{\"status\":\"200\", \"message\":\"Hobby has been posted for the admin to approve.\"}";
 		} catch(Exception e) {
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"The task cannot be posted at this time. Please try again later.\"}";
 		}
-
 	}
 
 
 	@ResponseBody
 	@RequestMapping(value = "/placedescription-post", method = RequestMethod.POST)
 	public String placeDescriptionPostData(ModelMap model, Principal principal, @RequestParam("locationId") String locationId, @RequestParam("crowd") String crowdy, @RequestParam("easylocation") String easylocation, @RequestParam("weather") String weather, @RequestParam("traffic") String traffic, @RequestParam("noise") String noisy, @RequestParam("services") String service, @RequestParam("localfood") String localfood, HttpServletResponse response) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user 		= this.userService.getUserByUsername(username);
@@ -566,7 +556,7 @@ public class TaskController {
 
 			return "{\"status\":\"200\", \"message\":\"message inserted successfully\"}";
 		} catch(Exception e) {
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"The task cannot be posted at this time. Please try again later.\"}";
 		}
 	}
 
@@ -579,7 +569,7 @@ public class TaskController {
 			@RequestParam("isCorrect") String isCorrect,
 			Principal principal,
 			HttpServletResponse response) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user = this.userService.getUserByUsername(username);
@@ -619,7 +609,7 @@ public class TaskController {
 
 			return "{\"status\":\"200\", \"message\":\"deliverable inserted successfully\"}";
 		} catch(Exception e) {
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"The task cannot be posted at this time. Please try again later.\"}";
 		}
 	}
 
@@ -632,7 +622,7 @@ public class TaskController {
 			@RequestParam("resourceId") String resourceId,
 			@RequestParam("isSkipped") String isSkipped,
 			HttpServletResponse response) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user = this.userService.getUserByUsername(username);
@@ -666,7 +656,7 @@ public class TaskController {
 
 			return "{\"status\":\"200\", \"message\":\"message inserted successfully\"}"; 
 		} catch(Exception e) {
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"The task cannot be posted at this time. Please try again later.\"}";
 		}
 	}
 
@@ -680,7 +670,7 @@ public class TaskController {
 			@RequestParam("isCorrect") String isCorrect,
 			Principal principal,
 			HttpServletResponse response) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user = this.userService.getUserByUsername(username);
@@ -716,7 +706,7 @@ public class TaskController {
 
 			return "{\"status\":\"200\", \"message\":\"message inserted successfully\"}";
 		} catch(Exception e) {
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"The task cannot be posted at this time. Please try again later.\"}";
 		}
 
 	}
@@ -730,7 +720,7 @@ public class TaskController {
 			@RequestParam("isSkipped") String isSkipped,
 			@RequestParam("isCorrect") String isCorrect,
 			HttpServletResponse response) {
-
+		
 		//get current user id from user info.
 		String username = principal.getName();
 		User user 		= this.userService.getUserByUsername(username);
@@ -758,7 +748,7 @@ public class TaskController {
 			deliverable.setIsCorrect(Integer.parseInt(isCorrect));
 		deliverable.setTime_taken(timeTaken);
 		deliverable.setCreated(Utils.getCurrentTime());
-
+		
 		try {
 			this.taskService.addNewSentimentAnalysisResourceDeliverable(deliverable);
 
@@ -767,7 +757,7 @@ public class TaskController {
 
 			return "{\"status\":\"200\", \"message\":\"message inserted successfully\"}";
 		} catch(Exception e) {
-			return "{\"status\":\"405\", \"message\":\""+e.getMessage()+"\"}";
+			return "{\"status\":\"405\", \"message\":\"The task cannot be posted at this time. Please try again later.\"}";
 		}
 
 	}
@@ -775,7 +765,7 @@ public class TaskController {
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(ModelMap model, Principal principal) {
-
+		
 		User user = this.userService.getUserByUsername(principal.getName());
 
 		int situatedCount = this.taskService.getUserSituatedTasks(user);
@@ -794,12 +784,12 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "/wordrelevancy", method = RequestMethod.GET)
-	public String wordRelevancy(ModelMap model) {
+	public String wordRelevancy(ModelMap model, Principal principal) {
 		return "wordrelevancy";
 	}
 
 	@RequestMapping(value = "/wordtranslation", method = RequestMethod.GET)
-	public String wordTranslation(ModelMap model) {
+	public String wordTranslation(ModelMap model, Principal principal) {
 		return "wordtranslation";
 	}
 }

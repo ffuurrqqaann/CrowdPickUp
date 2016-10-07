@@ -46,6 +46,7 @@
 	
 	//form submit function.
 	function submitTask() {
+		var numberPatter = /^[0-9.]+$/;
 		var gender 					= $('input[name="gender"]:checked').val();
 		var age						= $('#age').val();
 		var education 				= $('input[name="education"]:checked').val();
@@ -66,8 +67,8 @@
 		if (jQuery.type(gender) === "undefined") {
 			alert("Please select a gender");
 			return;
-		} else if (jQuery.type(age) == "") {
-			alert("Please enter your age");
+		} else if (age=="" || !numberPatter.test(age)) {
+			alert("Please enter a valid age");
 			return;
 		} else if (jQuery.type(education) === "undefined") {
 			alert("Please select education");
@@ -192,7 +193,7 @@
 	<div class="container">
 		<div class="row" style="border: 0px solid #000000;">
 			<div class="span4" align="center" style="margin-top: 5%;">
-				<img src="images/logo.png" class="img-responsive" alt="logo"
+				<img src="images/applogo.png" class="img-responsive" alt="logo"
 					width="121" height="60" />
 			</div>
 		</div>
@@ -215,15 +216,15 @@
 				<label for="email"> Task name : Survey</label>
 			</div>
 			<div class="form-group">
-				<label for="email"> Task Description : This is a survey</label>
+				<label for="email"> Task Description : Please complete this survey in its entirety</label>
 			</div>
 			<div class="form-group">
-				<label for="email"> Task Reward : 10 Coins</label>
+				<label for="email"> Task Reward : 300 Coins</label>
 			</div>
 			<form role="form" name="survey" id="survey" action="survey-post.html" method="POST">
 
 				<div class="form-group">
-					<label for="email">Gender</label>
+					<label for="email">1. Gender</label>
 				</div>
 				<div class="form-group">
 					<div class="radio">
@@ -235,14 +236,16 @@
 							name="gender" value="Female">Female</label>
 					</div>
 				</div>
+				<br/>
 				<div class="form-group">
-					<label for="email">Age</label>
+					<label for="email">2. Age</label>
 				</div>
 				<div class="form-group">
-					<textarea rows="10" cols="5" class="form-control" id="age" name="age"></textarea>
+					<textarea rows="1" cols="5" class="form-control" id="age" name="age"></textarea>
 				</div>
+				<br/>
 				<div class="form-group">
-					<label for="email">Education.</label>
+					<label for="email">3. Education.</label>
 				</div>
 				<div class="form-group">
 					<div class="radio">
@@ -262,9 +265,9 @@
 							value="4">Doctor Degree</label>
 					</div>
 				</div>
-
+				<br/>
 				<div class="form-group">
-					<label for="email">Field of Study.</label>
+					<label for="email">4. Field of Study.</label>
 				</div>
 				<div class="form-group">
 					<div class="radio">
@@ -292,9 +295,9 @@
 							value="6">Other</label>
 					</div>
 				</div>
-
+				<br/>
 				<div class="form-group">
-					<label for="email">How long have you lived in Oulu?</label>
+					<label for="email">5. How long have you lived in Oulu?</label>
 				</div>
 				<div class="form-group">
 					<div class="radio">
@@ -314,9 +317,9 @@
 							value="4">More than 3 years</label>
 					</div>
 				</div>
-
+				<br/>
 				<div class="form-group">
-					<label for="email">Have you ever done crowdsourcing work online? (e.g., Amazon's Mechanical Turk )</label>
+					<label for="email">6. Have you ever done crowdsourcing work online? (e.g., Amazon's Mechanical Turk )</label>
 				</div>
 				<div class="form-group">
 					<div class="radio">
@@ -331,8 +334,9 @@
 				<div class="form-group">
 					<label for="email">Instruction: How well do the following statements describe your personality?.</label>
 				</div>
+				<br/>
 				<div class="form-group">
-					<label for="email">I see myself as someone who...</label>
+					<label for="email">7. I see myself as someone who...</label>
 				</div>
 				
 				<div class="form-group">
@@ -360,7 +364,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... is generally trusting</label>
 				</div>
@@ -386,7 +390,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... tends to be lazy</label>
 				</div>
@@ -412,7 +416,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... is relaxed, handles stress well</label>
 				</div>
@@ -438,7 +442,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>				
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... has few artistic interests </label>
 				</div>
@@ -464,7 +468,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... is outgoing, sociable </label>
 				</div>
@@ -490,7 +494,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... tends to find faults with others </label>
 				</div>
@@ -516,7 +520,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... does a thorough job </label>
 				</div>
@@ -542,7 +546,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... gets nervous easily </label>
 				</div>
@@ -568,7 +572,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<div class="form-group">
 					<label for="email">... has an active imagination </label>
 				</div>
@@ -594,7 +598,7 @@
 							value="5">Agree Strongly</label>
 					</div>
 				</div>
-				
+				<br/>
 				<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 			</form>
 		</div>
