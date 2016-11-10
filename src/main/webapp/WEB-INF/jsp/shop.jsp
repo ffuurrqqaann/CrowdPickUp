@@ -72,20 +72,25 @@
 	function purchaseItem(item, dialogueObj) {
 
 		var cost = "";
+		var itemName = "";
 
 		if (item == "tenEuroVoucher") {
 			cost = jQuery("#tenEuroVoucher").val();
+			itemName = "tenEuroVoucher";
 		} else if (item == "twentyFiveEuroVoucher") {
 			cost = jQuery("#twentyFiveEuroVoucher").val();
-		} else if (item == "fiftyEuroVoucher") {
-			cost = jQuery("#fiftyEuroVoucher").val();
+			itemName = "twentyFiveEuroVoucher";
+		} else if (item == "movieticket") {
+			cost = jQuery("#movieticket").val();
+			itemName = "movieticket";
 		}
 
 		jQuery.ajax({
 			method : "POST",
 			url : "purchase.html",
 			data : {
-				cost : cost
+				cost : cost,
+				name : itemName
 			}
 		}).done(function(json) {
 			var response = jQuery.parseJSON(json);
@@ -135,9 +140,9 @@
 </head>
 <body class="bg">
 	<div id="dialog" title="Confirmation Required">Are you sure about this?</div>
-	<div id="helpDialoge" title="CrowdFlow Help">
+	<div id="helpDialoge" title="CrowdPickUp Help">
 		
-		<p>CrowdFlow is a Research project developed under the supervision of Center for Ubiquitous Computing, University Of Oulu.</p>
+		<p>CrowdPickup is a Research project developed under the supervision of Center for Ubiquitous Computing, University Of Oulu.</p>
 		<p>The purpose of this project is to asses the feasibility and performance of Local Knowledge, Location Based and General Crowdsourcing tasks as well as a basic understanding of its worker's behaviors.</p>
 		<p>In order to claim your prizes send an email to furqan.ahmed@student.oulu.fi (cc: Jorge.Goncalves@oulu.fi) and schedule an appointment.</p>
 		
@@ -180,9 +185,9 @@
 					</a>
 				</div>
 				<div class="col-md-4">
-					<a href="#" class="thumbnail" onclick="openDialogue('fiftyEuroVoucher')">
-						 <img src="images/shop/50-euro-voucher.png" style="width: 150px; height: 150px" class="img-thumbnail">
-						 <input type="hidden" id="fiftyEuroVoucher" name="fiftyEuroVoucher" value="5000" />
+					<a href="#" class="thumbnail" onclick="openDialogue('movieticket')">
+						 <img src="images/shop/movie-ticket.png" style="width: 150px; height: 150px" class="img-thumbnail">
+						 <input type="hidden" id="movieticket" name="movieticket" value="975" />
 					</a>
 				</div>
 			</div>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comag10.crowdflower.model.User;
+import com.comag10.crowdflower.service.ShopService;
 import com.comag10.crowdflower.service.UserService;
 import com.comag10.crowdflower.shared.Constants;
 
@@ -20,6 +21,9 @@ public class ShopController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private ShopService shopService;
+	
 	@RequestMapping(value="/shop")
 	public String loadShop (Model model) {
 		return "shop";
@@ -27,7 +31,7 @@ public class ShopController {
 
 	@ResponseBody
 	@RequestMapping(value="/purchase")
-	public String purchaseItem (Model model, @RequestParam("cost") String cost, Principal principal) {
+	public String purchaseItem (Model model, @RequestParam("cost") String cost, @RequestParam("name") String name, Principal principal) {
 
 		//get current user id from user info.
 		String username = principal.getName();
@@ -41,12 +45,12 @@ public class ShopController {
 		
 		int remainingBalance =userCurrentBalance - itemCost;
 		
-		/*User u = new User();*/
 		user.setBalance(remainingBalance);
 		
 		Boolean isUserUpdated = this.userService.updateUser(user);
 		
 		if (isUserUpdated) {
+			this.shopService.purchase(user, name);
 			return "{\"status\":\"200\", \"message\":\"You have successfully purchased the item. Please send an email to furqan.ahmed@student.oulu.fi (cc: Jorge.Goncalves@oulu.fi) to fix an appointment and claim your prize.Thanks!!!\"}";
 		}
 		

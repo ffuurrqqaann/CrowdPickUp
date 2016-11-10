@@ -26,7 +26,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/crowdflow" />
 		<property name="username" value="root" />
-		<property name="password" value="pickup2016" />
+		<property name="password" value="" />
 		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://127.9.117.130:3306/crowdflow" />
 		<property name="username" value="adminAc5MwR4" />
@@ -60,6 +60,7 @@
 				<value>com.comag10.crowdflower.model.Hobby</value>
 				<value>com.comag10.crowdflower.model.OuluHobbiesDeliverable</value>
 				<value>com.comag10.crowdflower.model.Authorities</value>
+				<value>com.comag10.crowdflower.model.Purchase</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -89,6 +90,16 @@
 	<bean id="taskService"
 		class="com.comag10.crowdflower.service.TaskServiceImpl">
 		<property name="taskDAO" ref="taskDAO"></property>
+	</bean>
+	
+	<!-- shop Data Access Object bean declaration -->
+	<bean id="shopDAO" class="com.comag10.crowdflower.dao.ShopDaoImpl">
+		<property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	<bean id="shopService"
+		class="com.comag10.crowdflower.service.ShopServiceImpl">
+		<property name="shopDAO" ref="shopDAO"></property>
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />

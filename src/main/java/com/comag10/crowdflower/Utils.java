@@ -34,7 +34,7 @@ public class Utils {
 
 	public static long getTimeDifference(String start, String end) {
 		//HH converts hour in 24 hours format (0-23), day calculation
-		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		long diffSeconds = 0;
 		Date d1 = null;

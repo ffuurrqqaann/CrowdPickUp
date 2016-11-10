@@ -86,8 +86,8 @@
 </script>
 </head>
 <body class="bg">
-	<div id="helpDialoge" title="CrowdFlow Help">
-		<p>CrowdFlow is a Research project developed under the supervision of Center for Ubiquitous Computing, University Of Oulu.</p>
+	<div id="helpDialoge" title="CrowdPickUp Help">
+		<p>CrowdPickUp is a Research project developed under the supervision of Center for Ubiquitous Computing, University Of Oulu.</p>
 		<p>The purpose of this project is to asses the feasibility and performance of Local Knowledge, Location Based and General Crowdsourcing tasks as well as a basic understanding of its worker's behaviors.</p>
 		<p>In order to claim your prizes send an email to furqan.ahmed@student.oulu.fi (cc: Jorge.Goncalves@oulu.fi) and schedule an appointment.</p>
 	</div>
@@ -114,6 +114,9 @@
 			<div class="span4"></div>
 			<div class="span4" align="center" style="margin-top: 10%;">
 				<div class="hero-unit" align="center">
+					<div class="alert alert-warning">
+						<strong>The study will end on the 4th of November 23:59. Please cash-in any remaining coins before that time.</strong>
+					</div>
 					<!-- Welcome message -->
 					<h2>Welcome ${username}</h2>
 					<h2>Perform the following tasks and win prizes.</h2>
