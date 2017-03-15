@@ -65,4 +65,5 @@ public interface TaskService {
 	public List<PlaceDescriptionDeliverable> getAllPlaceDescriptionDeliverables(int userId);
 	public Boolean checkUserSurvey(User u);
 	public Boolean addNewUserSurveyDeliverable(Survey deliverable);
+	public SentimentAnalysis getSentimentAnalysisDeliverables(SentimentAnalysis sentiment);
 }

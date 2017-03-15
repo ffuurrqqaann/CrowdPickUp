@@ -304,5 +304,12 @@ public class TaskServiceImpl implements TaskService {
 		// TODO Auto-generated method stub
 		return this.taskDAO.submitUserSurvey(deliverable);
 	}
+
+	@Transactional
+	public SentimentAnalysis getSentimentAnalysisDeliverables(
+			SentimentAnalysis sentiment) {
+		// TODO Auto-generated method stub
+		return this.taskDAO.getSentimentAnalysisWithDeliverable(sentiment);
+	}
 	
 }

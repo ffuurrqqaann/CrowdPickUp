@@ -3,9 +3,11 @@ package com.comag10.crowdflower.dao;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -821,5 +823,23 @@ public class TaskDaoImpl implements TaskDao {
 		}
 
 		return true;
+	}
+
+	@Override
+	public SentimentAnalysis getSentimentAnalysisWithDeliverable(SentimentAnalysis sentiment) {
+		// TODO Auto-generated method stub
+		
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		SentimentAnalysis sentimentObj = (SentimentAnalysis) session.createCriteria(SentimentAnalysis.class).add(Restrictions.idEq(sentiment.getResource_id())).uniqueResult();
+		
+		Hibernate.initialize(sentimentObj.getSentimentAnalysisDeliverable());
+		
+		return sentimentObj;
+		
+		
+		
+		
 	}
 }

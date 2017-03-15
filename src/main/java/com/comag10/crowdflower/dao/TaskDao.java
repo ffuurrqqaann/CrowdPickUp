@@ -62,6 +62,7 @@ public interface TaskDao {
 	public int getUserPlaceDescriptionDeliveables(User user);
 	public int getUserWordRelevancyDeliveables(User user);
 	public int getUserSentimentAnalysisDeliveables(User user);
+	public SentimentAnalysis getSentimentAnalysisWithDeliverable(SentimentAnalysis sentiment);
 	public int getUserVisualAnalysisDeliveables(User user);
 	public HousingLocation fetchRandomHousingLocation(int userId);
 	public HousingLocation fetchHousingLocationById(int id);

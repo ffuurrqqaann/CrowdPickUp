@@ -248,7 +248,15 @@ public class TaskController {
 		Task task = this.taskService.getTaskByName("Sentiment Analysis");
 		model.addAttribute("task", task);
 
-		SentimentAnalysis sentimentAnalysis = this.taskService.getRandomSentimentAnalysisResource(user.getId());
+		//SentimentAnalysis sentimentAnalysis = this.taskService.getRandomSentimentAnalysisResource(user.getId());
+		
+		SentimentAnalysis sentimentAnalysis = this.taskService.getSentimentAnalysisResourceById(13);
+		
+		//System.out.println("sentiment analysis size = "+sentiment.getSentimentAnalysisDeliverable().size());
+		
+		SentimentAnalysis sentiment = this.taskService.getSentimentAnalysisDeliverables(sentimentAnalysis);
+		
+		System.out.println("sentiment analysis size = "+sentiment.getSentimentAnalysisDeliverable().size());
 		
 		if(sentimentAnalysis==null) {
 			model.addAttribute("resource", "");
